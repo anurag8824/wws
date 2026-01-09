@@ -398,13 +398,13 @@ const Header = () => {
 
   const [gameList, setGameList] = React.useState([]);
 
-  React.useEffect(() => {
-    axios
-      .get(`adminMessage.json?v=${Date.now()}`)
-      .then((res: AxiosResponse) => {
-        setUserMessage(res.data.message);
-      });
-  }, []);
+  // React.useEffect(() => {
+  //   axios
+  //     .get(`adminMessage.json?v=${Date.now()}`)
+  //     .then((res: AxiosResponse) => {
+  //       setUserMessage(res.data.message);
+  //     });
+  // }, []);
 
   React.useEffect(() => {
     if (gameList.length <= 0)
@@ -666,7 +666,7 @@ const [userList, setUserList] = React.useState<any>({});
             <ul className="user-searchh flex gap-2  list-unstyled ">
               <li className="username  text-white my-2">
                 <span
-                  className="bg-gray-500 relative  rounded-sm px-2 py-2" style={{backgroundColor:"#cf9a16",color:"black"}}
+                  className="bg-gray-500 relative  rounded-sm px-2 py-2" style={{backgroundColor:"#6c757d",color:"white"}}
                   onClick={() => setShowMenu(!showMenu)}
                 >
                   {userState?.user?.username} <i className="fa fa-caret-down" />
@@ -739,7 +739,7 @@ const [userList, setUserList] = React.useState<any>({});
                       className="md:flex gap-2 md:flex-row flex flex-col items-center"
                       to={"/list-clients"}
                     >
-                      <TvIcon className="text-yellow-600 " />
+                      <TvIcon className="text-warning " />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Dashboard
                       </b>
@@ -752,7 +752,7 @@ const [userList, setUserList] = React.useState<any>({});
                       className="md:flex gap-2 py-2 md:flex-row flex flex-col items-center"
                       to={"/market-analysis"}
                     >
-                      <TvIcon className="text-yellow-600 " />
+                      <TvIcon className="text-warning" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Dashboard
                       </b>
@@ -765,7 +765,7 @@ const [userList, setUserList] = React.useState<any>({});
                       className="md:flex md:flex-row flex flex-col gap-2 items-center"
                       to={`/list-clients/${userState?.user?.username}`}
                     >
-                      <ListIcon className="text-yellow-600  " />
+                      <ListIcon className="text-warning  " />
                       <b className="md:text-lg text-xs font-medium text-white">
                         {userState?.user?.username}
                       </b>
@@ -794,7 +794,7 @@ const [userList, setUserList] = React.useState<any>({});
                       onClick={() => {setDropdownOpen(!dropdownOpen); setActiveMenu("User");}}
                      
                     >
-                      <GroupIcon className="text-yellow-600" />
+                      <GroupIcon className="text-warning" />
                       <b className="md:text-lg text-xs font-medium  text-white">
                         {/* {userState?.user?.role  === 'mdl' ? 'Agent Master' : "" } */}
                         {userState?.user?.role === "admin"
@@ -849,7 +849,7 @@ const [userList, setUserList] = React.useState<any>({});
                       className="md:flex gap-2 py-2  md:flex-row flex flex-col items-center"
                         to="/sports-details"
                     >
-                      <SportsSoccerIcon className="text-yellow-600" />
+                      <SportsSoccerIcon className="text-warning" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Sport's Betting
                       </b>
@@ -864,7 +864,7 @@ const [userList, setUserList] = React.useState<any>({});
                       className="md:flex gap-2 py-2  md:flex-row flex flex-col items-center"
                         to="/casino-details"
                     >
-                      <SummarizeIcon className="text-yellow-600" />
+                      <SummarizeIcon className="text-warning" />
                       <b className="md:text-lg text-xs font-medium text-white">
                        Casino Betting
                       </b>
@@ -873,7 +873,7 @@ const [userList, setUserList] = React.useState<any>({});
 
                   <li className="nav-item hidden dropdown border-b md:w-60">
                     <a onClick={() => setDropdownOpen2(!dropdownOpen2)} className="md:flex md:flex-row flex flex-col gap-2 items-center">
-                      <SportsSoccerIcon className="text-yellow-600" />
+                      <SportsSoccerIcon className="text-warning" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Sports Betting
                       </b>{" "}
@@ -890,7 +890,7 @@ const [userList, setUserList] = React.useState<any>({});
                           className="dropdown-item"
                         >
                           <b className="text-white md:text-lg  text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-yellow-600" />
+                            <ListIcon className="text-warning" />
                             {"Inplay Games"}
                           </b>
                         </CustomLink>
@@ -903,7 +903,7 @@ const [userList, setUserList] = React.useState<any>({});
                           className="dropdown-item"
                         >
                           <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-yellow-600" />
+                            <ListIcon className="text-warning" />
                             Sport's Betting
                           </b>
                         </CustomLink>
@@ -916,7 +916,7 @@ const [userList, setUserList] = React.useState<any>({});
                           className="dropdown-item hidden"
                         >
                           <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-yellow-600" />
+                            <ListIcon className="text-warning" />
                             Completed Games
                           </b>
                         </CustomLink>
@@ -926,7 +926,7 @@ const [userList, setUserList] = React.useState<any>({});
 
                   {/* <li className="nav-item dropdown border-b md:w-60">
                     <a className="md:flex md:flex-row flex flex-col gap-2 items-center">
-                      <SummarizeIcon className="text-yellow-600" />
+                      <SummarizeIcon className="text-warning" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         {userState?.user?.username}
                       </b>{" "}
@@ -943,7 +943,7 @@ const [userList, setUserList] = React.useState<any>({});
                           className="dropdown-item"
                         >
                           <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-yellow-600" />
+                            <ListIcon className="text-warning" />
                             {"My Ledger"}
                           </b>
                         </CustomLink>
@@ -953,7 +953,7 @@ const [userList, setUserList] = React.useState<any>({});
 
                   <li className="nav-item hidden dropdown border-b md:w-60">
                     <a className="md:flex md:flex-row flex flex-col gap-2 items-center">
-                      <SummarizeIcon className="text-yellow-600" />
+                      <SummarizeIcon className="text-warning" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Sports Detail
                       </b>{" "}
@@ -970,7 +970,7 @@ const [userList, setUserList] = React.useState<any>({});
                           className="dropdown-item"
                         >
                           <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-yellow-600" />
+                            <ListIcon className="text-warning" />
                             {"Sports Details"}
                           </b>
                         </CustomLink>
@@ -985,7 +985,7 @@ const [userList, setUserList] = React.useState<any>({});
                               className="dropdown-item"
                             >
                               <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                <TuneIcon className="text-yellow-600" />
+                                <TuneIcon className="text-warning" />
                                 {"Block Markets"}
                               </b>
                             </CustomLink>
@@ -997,7 +997,7 @@ const [userList, setUserList] = React.useState<any>({});
                               className="dropdown-item"
                             >
                               <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                <TuneIcon className="text-yellow-600" />
+                                <TuneIcon className="text-warning" />
                                 {"Messages"}
                               </b>
                             </CustomLink>
@@ -1009,7 +1009,7 @@ const [userList, setUserList] = React.useState<any>({});
                               className="dropdown-item"
                             >
                               <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                <TuneIcon className="text-yellow-600" />
+                                <TuneIcon className="text-warning" />
                                 Sports Detail
                               </b>
                             </CustomLink>
@@ -1022,7 +1022,7 @@ const [userList, setUserList] = React.useState<any>({});
                               className="dropdown-item"
                             >
                               <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                <TuneIcon className="text-yellow-600" />
+                                <TuneIcon className="text-warning" />
                                 {"Casino List"}
                               </b>
                             </CustomLink>
@@ -1037,7 +1037,7 @@ const [userList, setUserList] = React.useState<any>({});
                           className="dropdown-item"
                         >
                           <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-yellow-600" />
+                            <ListIcon className="text-warning" />
                             Total Profit
                           </b>
                         </CustomLink>
@@ -1050,7 +1050,7 @@ const [userList, setUserList] = React.useState<any>({});
                             className="dropdown-item"
                           >
                             <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-yellow-600" />
+                              <ListIcon className="text-warning" />
                               Deleted Bets
                             </b>
                           </CustomLink>
@@ -1067,14 +1067,14 @@ const [userList, setUserList] = React.useState<any>({});
                           className="dropdown-item"
                         >
                           <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-yellow-600" />
+                            <ListIcon className="text-warning" />
                             Game Reports
                           </b>
                         </CustomLink>
                       </li> */}
                       {/* <li>
                         <CustomLink to='/profitloss' className='dropdown-item'>
-                          <b className='text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1'><ListIcon className='text-yellow-600' />Profit And Loss</b>
+                          <b className='text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1'><ListIcon className='text-warning' />Profit And Loss</b>
                         </CustomLink>
                       </li> */}
                     </ul>
@@ -1087,7 +1087,7 @@ const [userList, setUserList] = React.useState<any>({});
                       className="md:flex py-2  md:flex-row flex flex-col gap-2 items-center"
                       to={"/casino-pl"}
                     >
-                      <AssessmentIcon className="text-yellow-600 " />
+                      <AssessmentIcon className="text-warning " />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Casino P/L nnccncncn
                       </b>
@@ -1100,7 +1100,7 @@ const [userList, setUserList] = React.useState<any>({});
                       className="md:flex md:flex-row flex flex-col gap-2 items-center"
                       to={"/market-analysis"}
                     >
-                      <AssessmentIcon className="text-yellow-600 " />
+                      <AssessmentIcon className="text-warning " />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Market Analysis
                       </b>
@@ -1109,7 +1109,7 @@ const [userList, setUserList] = React.useState<any>({});
 
                   {/* <li className="nav-item dropdown border-b md:w-60">
                     <a className="md:flex md:flex-row flex flex-col gap-2 items-center">
-                      <SummarizeIcon className="text-yellow-600" />
+                      <SummarizeIcon className="text-warning" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Reports
                       </b>{" "}
@@ -1125,7 +1125,7 @@ const [userList, setUserList] = React.useState<any>({});
                           className="dropdown-item"
                         >
                           <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-yellow-600" />
+                            <ListIcon className="text-warning" />
                             Account's Statement
                           </b>
                         </CustomLink>
@@ -1136,7 +1136,7 @@ const [userList, setUserList] = React.useState<any>({});
                           className="dropdown-item"
                         >
                           <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-yellow-600" />
+                            <ListIcon className="text-warning" />
                             Current Bets
                           </b>
                         </CustomLink>
@@ -1148,7 +1148,7 @@ const [userList, setUserList] = React.useState<any>({});
                             className="dropdown-item"
                           >
                             <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-yellow-600" />
+                              <ListIcon className="text-warning" />
                               Deleted Bets
                             </b>
                           </CustomLink>
@@ -1161,7 +1161,7 @@ const [userList, setUserList] = React.useState<any>({});
                           className="dropdown-item"
                         >
                           <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-yellow-600" />
+                            <ListIcon className="text-warning" />
                             Game Reports
                           </b>
                         </CustomLink>
@@ -1172,7 +1172,7 @@ const [userList, setUserList] = React.useState<any>({});
 
                   <li className={`nav-item dropdown border-b md:w-60 ${activeMenu === "Ledger" ? "bg-active" : ""}`}>
                     <a   onClick={() => {setDropdownOpen3(!dropdownOpen3); setActiveMenu("Ledger");}} className={`md:flex py-2  md:flex-row flex flex-col gap-2 items-center `}>
-                      <ReceiptLongIcon className="text-yellow-600" />
+                      <ReceiptLongIcon className="text-warning" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Ledger
                       </b>{" "}
@@ -1191,7 +1191,7 @@ const [userList, setUserList] = React.useState<any>({});
                           className={`dropdown-item border-b ${activeMenu === "My" ? "bg-active" : ""}`}
                         >
                           <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-yellow-600" />
+                            <ListIcon className="text-warning" />
                             {"My Ledger"}
                           </b>
                         </CustomLink>
@@ -1205,7 +1205,7 @@ const [userList, setUserList] = React.useState<any>({});
                           className={`dropdown-item border-b border-white/30 ${activeMenu === "All" ? "bg-active" : ""}`}
                         >
                           <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-yellow-600" />
+                            <ListIcon className="text-warning" />
                             All{" "}
                             {userState?.user?.role === RoleType.dl
                               ? "Client"
@@ -1224,7 +1224,7 @@ const [userList, setUserList] = React.useState<any>({});
 
                         >
                           <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-yellow-600" />
+                            <ListIcon className="text-warning" />
                             Total Profit
                           </b>
                         </CustomLink>
@@ -1238,7 +1238,7 @@ const [userList, setUserList] = React.useState<any>({});
                           className={`dropdown-item ${activeMenu === "ALedger" ? "bg-active" : ""}`}
                         >
                           <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-yellow-600" />
+                            <ListIcon className="text-warning" />
                             {userState?.user?.role === RoleType.dl
                               ? "Client"
                               : "Agent"}{" "}
@@ -1256,7 +1256,7 @@ const [userList, setUserList] = React.useState<any>({});
                             className={`dropdown-item ${activeMenu === "Comm" ? "bg-active" : ""}`}
                             >
                             <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-yellow-600" />
+                              <ListIcon className="text-warning" />
                               {"कमीशन लेन देन"}
                             </b>
                           </CustomLink>
@@ -1273,7 +1273,7 @@ const [userList, setUserList] = React.useState<any>({});
                             className="dropdown-item"
                           >
                             <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-yellow-600" />
+                              <ListIcon className="text-warning" />
                               Deleted Bets
                             </b>
                           </CustomLink>
@@ -1290,14 +1290,14 @@ const [userList, setUserList] = React.useState<any>({});
                           className="dropdown-item"
                         >
                           <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-yellow-600" />
+                            <ListIcon className="text-warning" />
                             Game Reports
                           </b>
                         </CustomLink>
                       </li> */}
                       {/* <li>
                         <CustomLink to='/profitloss' className='dropdown-item'>
-                          <b className='text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1'><ListIcon className='text-yellow-600' />Profit And Loss</b>
+                          <b className='text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1'><ListIcon className='text-warning' />Profit And Loss</b>
                         </CustomLink>
                       </li> */}
                     </div> :""}
@@ -1323,7 +1323,7 @@ const [userList, setUserList] = React.useState<any>({});
 
                   {/* <li className="nav-item dropdown border-b md:w-60">
                     <a className="md:flex md:flex-row flex flex-col gap-2 items-center ">
-                      <CasinoIcon className="text-yellow-600" />
+                      <CasinoIcon className="text-warning" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Sports Detail
                       </b>{" "}
@@ -1344,7 +1344,7 @@ const [userList, setUserList] = React.useState<any>({});
                                 className="dropdown-item"
                               >
                                 <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                  <ListIcon className="text-yellow-600" />
+                                  <ListIcon className="text-warning" />
                                   {Item.title}
                                 </b>
                               </CustomLink>
@@ -1357,7 +1357,7 @@ const [userList, setUserList] = React.useState<any>({});
                   {userState?.user?.role === RoleType.admin && (
                     <li className={`nav-item dropdown border-b md:w-60 w-fit ${activeMenu === "Setting" ? "bg-active" : ""}`}>
                       <a onClick={() => {setDropdownOpen4(!dropdownOpen4); setActiveMenu("Setting");}} className="md:flex py-2  md:flex-row flex flex-col gap-1 items-center">
-                        <SettingsIcon className="text-yellow-600" />
+                        <SettingsIcon className="text-warning" />
                         <b className="md:text-lg text-xs font-medium text-white">
                           Settings
                         </b>{" "}
@@ -1377,7 +1377,7 @@ const [userList, setUserList] = React.useState<any>({});
                                 className="dropdown-item"
                               >
                                 <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                  <TuneIcon className="text-yellow-600" />
+                                  <TuneIcon className="text-warning" />
                                   {"Messages"}
                                 </b>
                               </CustomLink>
@@ -1390,7 +1390,7 @@ const [userList, setUserList] = React.useState<any>({});
                                 className={`dropdown-item ${activeMenu === "Adm" ? "bg-active" : ""}`}
                               >
                                 <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                  <TuneIcon className="text-yellow-600" />
+                                  <TuneIcon className="text-warning" />
                                   Add Match List
                                 </b>
                               </CustomLink>
@@ -1404,7 +1404,7 @@ const [userList, setUserList] = React.useState<any>({});
                                 className={`dropdown-item ${activeMenu === "CS" ? "bg-active" : ""}`}
                               >
                                 <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                  <TuneIcon className="text-yellow-600" />
+                                  <TuneIcon className="text-warning" />
                                   Casino List
                                 </b>
                               </CustomLink>
@@ -1420,7 +1420,7 @@ const [userList, setUserList] = React.useState<any>({});
                                 className={`dropdown-item ${activeMenu === "BM" ? "bg-active" : ""}`}
                               >
                                 <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                  <TuneIcon className="text-yellow-600" />
+                                  <TuneIcon className="text-warning" />
                                   {"Block Markets"}
                                 </b>
                               </CustomLink>
@@ -1434,7 +1434,7 @@ const [userList, setUserList] = React.useState<any>({});
                                 className={`dropdown-item ${activeMenu === "DB" ? "bg-active" : ""}`}
                               >
                                 <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                                  <DeleteIcon className="text-yellow-600" />
+                                  <DeleteIcon className="text-warning" />
                                   Deleted Bets
                                 </b>
                               </CustomLink>
@@ -1448,7 +1448,7 @@ const [userList, setUserList] = React.useState<any>({});
                             className="dropdown-item"
                           >
                             <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-yellow-600" />
+                              <ListIcon className="text-warning" />
                               Deleted Bets History
                             </b>
                           </CustomLink>
@@ -1463,7 +1463,7 @@ const [userList, setUserList] = React.useState<any>({});
                                 className={`dropdown-item ${activeMenu === "NC" ? "bg-active" : ""}`}
                               >
                                 <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                                  <ListIcon className="text-yellow-600" />
+                                  <ListIcon className="text-warning" />
                                   Notice
                                 </b>
                               </CustomLink>
@@ -1478,7 +1478,7 @@ const [userList, setUserList] = React.useState<any>({});
                                 className={`dropdown-item ${activeMenu === "MO" ? "bg-active" : ""}`}
                               >
                                 <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                                  <ListIcon className="text-yellow-600" />
+                                  <ListIcon className="text-warning" />
                                   Manage Odds
                                 </b>
                               </CustomLink>
@@ -1491,7 +1491,7 @@ const [userList, setUserList] = React.useState<any>({});
                                 className="dropdown-item"
                               >
                                 <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                  <TuneIcon className="text-yellow-600" />
+                                  <TuneIcon className="text-warning" />
                                   {"Casino List"}
                                 </b>
                               </CustomLink>
@@ -1506,7 +1506,7 @@ const [userList, setUserList] = React.useState<any>({});
         className="dropdown-item"
       >
         <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-          <TuneIcon className="text-yellow-600" />
+          <TuneIcon className="text-warning" />
           {"Payment Method"}
         </b>
       </CustomLink>
@@ -1518,7 +1518,7 @@ const [userList, setUserList] = React.useState<any>({});
         className="dropdown-item"
       >
         <b className="text-white md:flex md:flex-row flex flex-col gap-1 items-center">
-          <TuneIcon className="text-yellow-600" />
+          <TuneIcon className="text-warning" />
           {"Client Ledger"}
         </b>
       </CustomLink>
@@ -1534,7 +1534,7 @@ const [userList, setUserList] = React.useState<any>({});
                       className="md:flex gap-2 py-2 md:flex-row flex flex-col items-center"
                       to={"/all-client-report"}
                     >
-                      <LocalOfferIcon className="text-yellow-600 " />
+                      <LocalOfferIcon className="text-warning " />
                       <b className="md:text-lg text-xs font-medium text-white">
                         All{" "}
                         {userState?.user?.role === RoleType.dl

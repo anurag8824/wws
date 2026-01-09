@@ -1,7 +1,8 @@
 
 .card-header{
-	background: darkgoldenrod !important;
+	background: black !important;
 	color: #fff !important;
+    font-weight: 700;
 } 
 .matka-profit{
     color: green;
@@ -59,7 +60,7 @@ table ul .dropdown-toggle::after {
 }
 
 .navbar-bet99 {
-    background: darkgoldenrod !important;
+    background: rgb(0, 0, 0) !important;
     color: #fff !important
 }
 

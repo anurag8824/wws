@@ -6,8 +6,8 @@
   
   .ledger-title {
     text-align: center;
-    background-color: darkgoldenrod;
-    color: rgb(0, 0, 0);
+    background-color: #6c757d;
+    color: rgb(255, 255, 255);
     padding: 10px;
     font-size: 22px;
   }

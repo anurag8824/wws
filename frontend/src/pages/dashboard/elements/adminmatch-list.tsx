@@ -56,7 +56,7 @@ const MatchList2: React.FC<MatchListProps> = ({
   <div className="card w-100" style={{ cursor: "pointer" }}>
     <div
       className="card-headerf font-weight-bolder text-center bg-wcarning p-1 h6 small"
-      style={{ backgroundColor: "darkgoldenrod", color: "black" }}
+      style={{ backgroundColor: "black", color: "white" }}
     >
       {match?.name}
     </div>
