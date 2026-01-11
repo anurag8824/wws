@@ -38,6 +38,7 @@ const MyLedger = React.lazy(() => import('./pages/ledger/MyLedger'))
 const Notice = React.lazy(() => import('./pages/settings/Notices'))
 const ManageOdds = React.lazy(() => import('./pages/settings/ManageOdds'))
 const DeletedAllBets = React.lazy(() => import('./pages/UnsetteleBetHistory/DeletedBets'))
+const MatkaResult = React.lazy(() => import('./pages/matka/matka-result'))
 
 
 
@@ -136,6 +137,9 @@ const AdminRoutes = () => {
             { path: "ledger-home", element: <LedgerHome/>},
             { path: "notice", element: <Notice/>},
             { path: "manage-odds", element: <ManageOdds />},
+            { path: "matka-results", element: <MatkaResult />},
+
+            
 
             { path: "session-bets/:id", element: <Completedbets/>},
             { path: "match-bets/:id", element: <RejectedBets />},
@@ -154,7 +158,7 @@ const AdminRoutes = () => {
             {path:"total-profit", element: <TotalProfit/>},
             {path:"commision-len-den", element: <CommisionLenden />},
             {path: "all-client-report", element: <AllReport/>},
-            {path:"casino-pl", element:<CasinoPL/>},
+            {path:"matka-pl", element:<CasinoPL/>},
             {path: "sports-details", element: <SportsDetails/>},
             {path: "casino-details", element: <CasinoDetail/>},
 

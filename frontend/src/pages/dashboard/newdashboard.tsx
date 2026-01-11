@@ -105,11 +105,11 @@ const Dashboard = () => {
     }
   }, [odds])
 
-  React.useEffect(()=>{
-    betService.lenadena().then((res:AxiosResponse<any>)  =>{
-      console.log(res,"res for lena dena jai hind !")
-    })
-  },[])
+  // React.useEffect(()=>{
+  //   betService.lenadena().then((res:AxiosResponse<any>)  =>{
+  //     console.log(res,"res for lena dena jai hind !")
+  //   })
+  // },[])
 
   // const fetchMarketData = async () => {
   //   try {

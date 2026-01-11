@@ -7,6 +7,7 @@ import Deposit from '../pages/deposit/deposit'
 import Withdraw from '../pages/withdraw/withdraw'
 import DepositStatement from '../pages/depositstatement/depositstatement'
 import WithdrawStatement from '../pages/withdrawstatement/withdrawstatement'
+import MatkaDashboard from '../pages/dashboard/satkamatka'
 
 const AccountStatement = React.lazy(() => import('../pages/AccountStatement/AccountStatement'))
 const NewAccountStatement = React.lazy(() => import('../pages/AccountStatement/NewAccountStatement'))
@@ -31,6 +32,8 @@ const Completegames = React.lazy(() => import('../pages/dashboard/completegames'
 
 const Login = React.lazy(() => import('../pages/login/login'))
 const Odds = React.lazy(() => import('../pages/odds/odds'))
+const MatkaPlay = React.lazy(() => import('../pages/odds/matkaplay'))
+
 const Oddsone = React.lazy(() => import('../pages/odds/oddsone'))
 
 const ProfitLoss = React.lazy(() => import('../pages/PlReport/ProfitLoss'))
@@ -82,6 +85,8 @@ const Routers = () => {
             { path: 'dashbaord', element: <Dashboard /> },
             // { path: 'match/:sportId', element: <Dashboard /> },
             { path: 'match/:sportId', element: <NewDashboard /> },
+            { path: 'match/matka', element: <MatkaDashboard /> },
+
 
             { path: 'my-home', element: <Newbrohome /> },
             { path: 'profile', element: <Newprofile /> },
@@ -92,6 +97,8 @@ const Routers = () => {
             
             { path: 'match/:sportId/:status?', element: <NewDashboard /> },
             { path: 'odds/:matchId', element: <Odds /> },
+            { path: 'matka-play/:matchId', element: <MatkaPlay /> },
+
             { path: 'iframe', element: <Oddsone /> },
 
             { path: 'button-values', element: <ButtonValues /> },

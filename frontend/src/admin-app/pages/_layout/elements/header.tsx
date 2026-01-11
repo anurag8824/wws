@@ -1085,11 +1085,11 @@ const [userList, setUserList] = React.useState<any>({});
                       // onClick={toggleDrawer}
                       onClick={() => { toggleDrawer(); setActiveMenu("Casino");}}
                       className="md:flex py-2  md:flex-row flex flex-col gap-2 items-center"
-                      to={"/casino-pl"}
+                      to={"/matka-pl"}
                     >
                       <AssessmentIcon className="text-warning " />
                       <b className="md:text-lg text-xs font-medium text-white">
-                        Casino P/L nnccncncn
+                        Matka P/L
                       </b>
                     </CustomLink>
                   </li> */}
@@ -1422,6 +1422,21 @@ const [userList, setUserList] = React.useState<any>({});
                                 <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
                                   <TuneIcon className="text-warning" />
                                   {"Block Markets"}
+                                </b>
+                              </CustomLink>
+                            </li>
+
+                            <li className="border-b pb-2">
+                              <CustomLink
+                                // onClick={() => setDropdownOpen4(!dropdownOpen4)}
+                                // to="/sports-list/active-matches"
+                                onClick={() => {toggleDrawer() ; setActiveMenu("BM");}}
+                                to="/matka-results"
+                                className={`dropdown-item ${activeMenu === "BM" ? "bg-active" : ""}`}
+                              >
+                                <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
+                                  <TuneIcon className="text-warning" />
+                                  {"Matka Markets"}
                                 </b>
                               </CustomLink>
                             </li>

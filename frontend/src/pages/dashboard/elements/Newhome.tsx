@@ -21,10 +21,10 @@ const Newhome = () => {
                 </a>
               </div>
               <div className="col-md-6 col-6 text-center menu-list-item">
-                <a href="/">
+                <a href="/match/matka">
                   <img src="/imgs/matka.png" />{" "}
                   <br />
-                  Matka(coming soon)
+                  Matka
                 </a>
               </div>
             </div>

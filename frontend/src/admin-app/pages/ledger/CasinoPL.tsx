@@ -59,7 +59,7 @@ const CasinoPL = () => {
            <div className="row">
       <div className="col">
         <div style={{ textAlign: "center", padding: "10px" }}>
-          <h4>Casino Profit Loss</h4>
+          <h4>Matka Profit Loss</h4>
           {/* <a className="btn btn-secondary btn-sm">Today P/L</a> */}
         </div>
         <div className="overflow-auto">
