@@ -1190,7 +1190,7 @@ const [userList, setUserList] = React.useState<any>({});
                           to="/my-ledger"
                           className={`dropdown-item border-b ${activeMenu === "My" ? "bg-active" : ""}`}
                         >
-                          <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
+                          <b className="text-white mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
                             <ListIcon className="text-warning" />
                             {"My Ledger"}
                           </b>
@@ -1389,7 +1389,7 @@ const [userList, setUserList] = React.useState<any>({});
                                 to={"/matches/4"}
                                 className={`dropdown-item ${activeMenu === "Adm" ? "bg-active" : ""}`}
                               >
-                                <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
+                                <b className="text-white mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
                                   <TuneIcon className="text-warning" />
                                   Add Match List
                                 </b>

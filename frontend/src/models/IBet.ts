@@ -8,6 +8,7 @@ export enum IBetOn {
   MATCH_ODDS = 'MATCH_ODDS',
   CASINO = 'CASINO',
   CASINOFANCY = 'CASINOFANCY',
+  MATKA= 'MATKA',
 }
 export default interface IBet {
   _id?: string

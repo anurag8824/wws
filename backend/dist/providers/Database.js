@@ -13,7 +13,7 @@ class Database {
     static init() {
         // const dsn = Locals.config().mongooseUrl+`?retryWrites=false&authSource=admin&directConnection=true`
         // const dsn = "mongodb://admin:StrongPasswordHere@69.62.123.205:27017/infa?retryWrites=true&authSource=admin&replicaSet=rs0"
-        const dsn = "mongodb://admin:9xbro%408824@69.62.123.205:27017/infa?retryWrites=true&authSource=admin&replicaSet=rs0";
+        const dsn = "mongodb://admin:9xbro%408824@69.62.123.205:27017/11wc?retryWrites=true&authSource=admin&replicaSet=rs0";
         // const dsn = "mongodb+srv://infayou:rahul1234@cluster0.zbf0n.mongodb.net/infa?retryWrites=true&w=majority&appName=Cluster0&tlsAllowInvalidCertificates=true";
         //const dsn = Locals.config().mongooseUrl 
         // 

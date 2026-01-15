@@ -2,6 +2,7 @@ export enum OddsType {
   B = 'berFair', // Betfair
   BM = 'bookMaker',
   F = 'Fancy',
+  M = 'Matka',
 }
 export default interface IMarket {
   _id?: string

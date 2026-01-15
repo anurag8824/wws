@@ -17,7 +17,7 @@ import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import { useAppSelector } from "../../../redux/hooks";
 import { selectUserData } from "../../../redux/actions/login/loginSlice";
-import User from "../../../models/User";
+import User, { RoleType } from "../../../models/User";
 
 import UserService from "../../../services/user.service";
 import userService from "../../../services/user.service";
@@ -288,6 +288,45 @@ const AdminDashboard = () => {
     navigate.go(`/odds/${match.matchId}`);
   };
 
+   const getRoleOptions = (): { key: RoleType; label: string }[] => {
+      const userRole = userState?.user?.role as RoleType;
+  
+      const allRoles = {
+        admin: "Super Admin",
+        sadmin: "Sub Admin",
+        suadmin: "Admin",
+        smdl: "Master Agent",
+        mdl: "Super Agent Master",
+        dl: "Agent Master",
+        user: "Client Master",
+      };
+  
+      const roleMap: Record<RoleType, RoleType[]> = {
+        [RoleType.admin]: [
+          RoleType.sadmin,
+          RoleType.suadmin,
+          RoleType.smdl,
+          RoleType.mdl,
+          RoleType.dl,
+          RoleType.user,
+        ],
+        [RoleType.sadmin]: [RoleType.suadmin ,RoleType.smdl, RoleType.mdl,  RoleType.dl, RoleType.user,],
+        [RoleType.suadmin]: [RoleType.smdl, RoleType.mdl, RoleType.dl, RoleType.user,],
+  
+        [RoleType.smdl]: [RoleType.mdl, RoleType.dl, RoleType.user],
+        [RoleType.mdl]: [RoleType.dl, RoleType.user],
+        [RoleType.dl]: [RoleType.user],
+        [RoleType.user]: [],
+      };
+  
+      const allowedRoles = roleMap[userRole] || [];
+  
+      return allowedRoles.map((key) => ({
+        key,
+        label: allRoles[key],
+      }));
+    };
+
   return (
     <>
       {/* {mobileSubheader.subheaderdesktopadmin(
@@ -460,7 +499,7 @@ const AdminDashboard = () => {
                 </div>
               </div>
 
-              <div
+              {/* <div
                 className="col-md-4 mb-2 ng-scope"
                 ng-repeat="(key, value) in downline"
               >
@@ -469,7 +508,25 @@ const AdminDashboard = () => {
                     Client ( {userList?.totalItems} )
                   </div>
                 </div>
-              </div>
+              </div> */}
+
+              {getRoleOptions().map((role) => (
+                        <div key={role.key} className="col-md-4 mb-2 ng-scope">
+                          <CustomLink
+                            to={`/list-clients/${userState?.user?.username}/${role.key}`}
+                            // onClick={() => setDropdownOpen(!dropdownOpen)}
+                            //  onClick={toggleDrawer}
+                            className="card"
+                          >
+                            <div className="card-header h6 ng-binding">
+                              {role.label}({userList?.items?.filter((i: any) => i.role === `${role.key}`)?.length})
+                            </div>
+                          </CustomLink>
+                        </div>
+                      ))}
+
+
+
             </div>
           </div>
         </div>
