@@ -1,24 +1,8 @@
 import React, { useState } from "react";
+import accountService from "../../../services/account.service";
 
 // ✅ DUMMY MATKA LIST
-const matkaList:any[] = [
-  {
-    matchId: "37939",
-    name: "FARIDABAD",
-  },
-  {
-    matchId: "37940",
-    name: "GHAZIABAD",
-  },
-  {
-    matchId: "37941",
-    name: "GALI",
-  },
-  {
-    matchId: "37942",
-    name: "DISAWAR",
-  },
-];
+
 
 // ✅ DUMMY API
 const betserver = {
@@ -34,31 +18,55 @@ export default function MatkaResult() {
   const [result, setResult] = React.useState("");
   const [rows, setRows] = React.useState<any>([]);
 
+    const [matkaList, setMatkaList] = React.useState<any>([])
+  
+
+   React.useEffect(() => {
+      const fetchMatkaList = async () => {
+        try {
+          const res = await accountService.matkagamelist();
+          console.log(res?.data?.data, "ffff");
+          setMatkaList(res?.data?.data);
+        } catch (err) {
+          console.error("Matka list error:", err);
+        }
+      };
+    
+      fetchMatkaList();
+    }, []);
+
   // ✅ SUBMIT HANDLER
   const handleSubmit = async (e:any) => {
     e.preventDefault();
 
     const selectedGame = matkaList.find(
-      (m) => m.matchId === selectedMatchId
+      (m:any) => m.id === selectedMatchId
     );
 
     if (!selectedGame) return;
 
     const payload = {
-      matchId: selectedGame.matchId,
-      name: selectedGame.name,
+      matchId: selectedGame.id,
+      name: selectedGame.gamename,
+      roundId:selectedGame.roundid,
       result,
       date,
     };
 
-    // API CALL
-    await betserver.matkaResult(payload);
+    console.log(payload,"bv")
 
-    // Table update (dummy)
-    setRows((prev:any) => [...prev, payload]);
+    try {
+      const res = await betserver.matkaResult(payload);
+  
+      // success ke baad hi UI update
+      setRows((prev: any) => [...prev, payload]);
+      setResult("");
+    } catch (err) {
+      console.error("Result submit error:", err);
+      alert("Result submit failed");
+    }
 
-    // reset
-    setResult("");
+    
   };
 
   return (
@@ -91,9 +99,9 @@ export default function MatkaResult() {
             required
           >
             <option value="">Select Market</option>
-            {matkaList.map((item) => (
-              <option key={item.matchId} value={item.matchId}>
-                {item.name}
+            {matkaList.map((item:any) => (
+              <option key={item.matchId} value={item.id}>
+                {item.gamename}
               </option>
             ))}
           </select>
@@ -140,7 +148,7 @@ export default function MatkaResult() {
               matkaList.map((row:any, idx:any) => (
                 <tr key={idx}>
                   <td>{idx + 1}</td>
-                  <td>{row.name}</td>
+                  <td>{row.gamename}</td>
                   <td>{row.result}</td>
                   <td>{new Date().toLocaleDateString("en-GB")}</td>
 

@@ -26,12 +26,17 @@ import Fav from '../_layout/elements/fav'
 import axios from 'axios'
 import Newhome from './elements/Newhome'
 import MatkaList from './elements/matka-list'
+import accountService from '../../services/account.service'
 
 // const isMobile = true;
 
 const MatkaDashboard = () => {
-//   const [matkaList, setMatkaList] = React.useState<LMatch[]>([])
-  const matkaList:any = [
+  const [matkaList, setMatkaList] = React.useState<any>([])
+
+
+
+
+  const matkaListe:any = [
     {
     "matchId": "37939",
     "name": "FARIDABAD",
@@ -163,7 +168,22 @@ const MatkaDashboard = () => {
     })
   },[])
 
+  React.useEffect(() => {
+    const fetchMatkaList = async () => {
+      try {
+        const res = await accountService.matkagamelist();
+        console.log(res?.data?.data, "ffff");
+        setMatkaList(res?.data?.data);
+      } catch (err) {
+        console.error("Matka list error:", err);
+      }
+    };
   
+    fetchMatkaList();
+  }, [sportId]);
+  
+
+  console.log(matkaList,"matklist")
 
   const marketIdsEvent = (data: any, oddsData: any, event: string) => {
     console.log(data,oddsData,event ,"market Event Data")
@@ -178,9 +198,9 @@ const MatkaDashboard = () => {
     })
   }
 
-  const currentMatch = (match: IMatch) => {
+  const currentMatch = (match: any) => {
     dispatch(setCurrentMatch(match))
-    navigate.go(`/matka-play/${match.matchId}`)
+    navigate.go(`/matka-play/${match.gamename}`)
   }
 
   return (

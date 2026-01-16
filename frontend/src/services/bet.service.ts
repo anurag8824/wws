@@ -1,4 +1,4 @@
-import api, { fancyApi } from "../utils/api";
+import api, { fancyApi, fancyApiMatka } from "../utils/api";
 import IBet from "../models/IBet";
 
 class BetService {
@@ -36,6 +36,12 @@ class BetService {
   getPlaceBet(betData: IBet) {
     return fancyApi.post("placebet", betData);
   }
+
+  getPlaceBetMatka(betData: IBet) {
+    return fancyApiMatka.post("place-matka-bet", betData);
+  }
+
+
   lenadena() {
     return fancyApi.get("lena-dena");
   }

@@ -15,6 +15,9 @@ class AccountService {
    matchdetail2() {
     return api.get(`matchdetail-two`);
   }
+  matkagamelist() {
+    return api.get(`matka-list`);
+  }
    getBets32(data:any) {
     return api.post(`bet32`,data);
   }

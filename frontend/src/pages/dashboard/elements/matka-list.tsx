@@ -8,7 +8,7 @@ import axios from "axios";
 
 interface MatchListProps {
   matchList: any[];
-  currentMatch: (match: LMatch) => void;
+  currentMatch: (match: any) => void;
 }
 
 const MatkaList: React.FC<MatchListProps> = ({
@@ -25,7 +25,7 @@ const MatkaList: React.FC<MatchListProps> = ({
         <thead> 
         </thead>
         <tbody>
-          {matchList?.map((match: LMatch, index: number) => {
+          {matchList?.map((match: any, index: number) => {
             const marketId =
               match?.markets && match?.markets?.length > 0
                 ? match?.markets[0]?.marketId
@@ -51,7 +51,8 @@ const MatkaList: React.FC<MatchListProps> = ({
   className="ng-binding"
   style={{ backgroundColor: "#FFB200", color: "white" }}
 >
-  {match.name}-{moment().format("DD-MM-YYYY")}
+  {/* {match.gamename}-{moment().format("DD-MM-YYYY")} */}
+  {match?.roundid}
 </h5>
 
 

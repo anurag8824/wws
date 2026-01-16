@@ -15,7 +15,13 @@ export const getPlaceBetAction = createAsyncThunk(
       // Frontend delay of 2 seconds
       await delay(1000)
 
-      const res = await betService.getPlaceBet(data)
+      console.log(data, "check matka bet dtata")
+      let res:any
+      if(data?.betOn == "MATKA"){
+       res = await betService.getPlaceBetMatka(data)
+      } else {
+       res = await betService.getPlaceBet(data)
+      }
 
       dispatch(setExposer(res.data.data.exposer))
       dispatch(setBookMarketList(res.data.data.profitlist))

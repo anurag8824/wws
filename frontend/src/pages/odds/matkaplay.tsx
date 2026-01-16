@@ -8,6 +8,9 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectUserData } from "../../redux/actions/login/loginSlice";
 import { IBetOn, IBetType } from "../../models/IBet";
 import { OddsType } from "../../models/IMarket";
+import PlaceBetBox from "./components/place-bet-box";
+import { IUserBetStake } from "../../models/IUserStake";
+import accountService from "../../services/account.service";
 
 const MatkaPlay = () => {
   const { matchId } = useParams(); // 👈 URL se matchId
@@ -16,40 +19,30 @@ const MatkaPlay = () => {
   const dispatch = useAppDispatch()
 
   const [gameType, setGameType] = React.useState("");
+    const [matkaList, setMatkaList] = React.useState<any>([])
+  
 
-  const matkaList: any[] = [
-    {
-      matchId: "37939",
-      name: "FARIDABAD",
-      matchDateTime: "2024-06-01T12:00:00Z",
-      winner: "-1",
-      game_type: "Matka",
-    },
-    {
-      matchId: "37940",
-      name: "GHAZIABAD",
-      matchDateTime: "2024-06-01T12:00:00Z",
-      winner: "-1",
-      game_type: "Matka",
-    },
-    {
-      matchId: "37941",
-      name: "GALI",
-      matchDateTime: "2024-06-01T12:00:00Z",
-      winner: "-1",
-      game_type: "Matka",
-    },
-    {
-      matchId: "37942",
-      name: "DISAWAR",
-      matchDateTime: "2024-06-01T12:00:00Z",
-      winner: "-1",
-      game_type: "Matka",
-    },
-  ];
+
+  React.useEffect(() => {
+      const fetchMatkaList = async () => {
+        try {
+          const res = await accountService.matkagamelist();
+          console.log(res?.data?.data, "ffff");
+          setMatkaList(res?.data?.data);
+        } catch (err) {
+          console.error("Matka list error:", err);
+        }
+      };
+    
+      fetchMatkaList();
+    }, [matchId]);
+
+
+
+
 
   // ✅ matching item nikaalo
-  const match = matkaList.find((item) => item.matchId === matchId);
+  const match = matkaList.find((item:any) => item.gamename == matchId);
 
   if (!match) {
     return <div className="text-center mt-3">Match not found</div>;
@@ -61,6 +54,7 @@ const MatkaPlay = () => {
   ];
 
   const harafNumbers = Array.from({ length: 10 }, (_, i) => i);
+
 
 
 
@@ -123,9 +117,9 @@ const MatkaPlay = () => {
             isBack,
             odds: 0,
             volume: 0,
-            marketId: market.matchId,
+            marketId: match.id,
             marketName: "MATKA",
-            matchId: market.matchId,
+            matchId: match.roundid,
             selectionName: market.num,
             selectionId: market.num,
             pnl: 0,
@@ -149,8 +143,54 @@ const MatkaPlay = () => {
       
         console.log("✅ betPopup DISPATCHED");
       };
-      
 
+      const usid:any = userState!.user!._id
+      
+      const matkastake: IUserBetStake[] = [
+        {
+          userId: usid,
+          name1: "100",
+          value1: 100,
+      
+          name2: "200",
+          value2: 200,
+      
+          name3: "500",
+          value3: 500,
+      
+          name4: "1K",
+          value4: 1000,
+      
+          name5: "2K",
+          value5: 2000,
+      
+          name6: "3K",
+          value6: 3000,
+      
+          name7: "5K",
+          value7: 5000,
+      
+          name8: "10K",
+          value8: 10000,
+      
+          name9: "20K",
+          value9: 20000,
+      
+          name10: "25K",
+          value10: 25000,
+      
+          name11: "50K",
+          value11: 50000,
+      
+          name12: "100K",
+          value12: 100000,
+      
+          name13: "200K",
+          value13: 200000,
+        }
+      ];
+      
+      console.log(matkastake,"makrkk")
 
   return (
     <div className="container w-100 p-0">
@@ -171,7 +211,8 @@ const MatkaPlay = () => {
             className="ng-binding"
             style={{ backgroundColor: "#FFB200", color: "white" }}
           >
-            {match.name}-{moment().format("DD-MM-YYYY")}
+            {/* {match.name}-{moment().format("DD-MM-YYYY")} */}
+            {match?.roundid}
           </h5>
 
           <p
@@ -189,7 +230,7 @@ const MatkaPlay = () => {
               <div className="row">
                 {singlePattiNumbers.map((num) => (
                   <div key={num} className="col-4 col-md-3 mb-2">
-                    <button   onClick={() => onBet(true, {num, matchId })} className="btn btn-info w-100">{num}</button>
+                    <button   onClick={() => onBet(true, {num, matchId, })} className="btn btn-info w-100">{num}</button>
                     <span className="btn w-100">0s</span>
                   </div>
                 ))}
@@ -224,6 +265,8 @@ const MatkaPlay = () => {
           )}
         </div>
       </div>
+
+      <PlaceBetBox stake={matkastake[0]} />
     </div>
   );
 };

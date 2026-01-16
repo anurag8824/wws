@@ -1,6 +1,7 @@
 import IMarket from './IMarket'
 
 export default interface LMatch {
+  gamename: any
   _id?: string
   matchId: number
   sportId: string
