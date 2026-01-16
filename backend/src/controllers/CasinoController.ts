@@ -12,11 +12,16 @@ import { AccoutStatement } from '../models/AccountStatement'
 import { CasinoGameResult } from '../models/CasinoGameResult'
 import { CasCasino } from '../models/CasCasino'
 
+
 setInterval(() => {
   try {
     new CasinoController().setResultByTimePeriod()
   } catch (e) {}
 }, 3000)
+
+
+
+
 
 export class CasinoController extends ApiController {
   getCasinoList = async (req: Request, res: Response) => {

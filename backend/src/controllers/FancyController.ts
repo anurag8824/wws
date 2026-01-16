@@ -19,8 +19,10 @@ import { RoleType } from "../models/Role";
 import { Market } from "../models/Market";
 import { CasCasino } from "../models/CasCasino";
 import { ledger } from "../models/allledager";
+import  Matkabet  from "../models/Matkabet";
 import { cp } from "node:fs";
 import { BetStake } from "../models/BetStake";
+import Matka from "../models/Matka";
 
 var ObjectId = require("mongoose").Types.ObjectId;
 
@@ -94,6 +96,68 @@ export class FancyController extends ApiController {
   //     return this.fail(res, e);
   //   }
   // };
+  
+
+// Matka code start from here 
+
+placeMatkabet = async (req: Request, res: Response): Promise<Response> => {
+
+    try {
+     const data = req.body;
+     const {_id,usernname}:any = req.user;
+     if(! data){
+      return this.fail(res, "Invalid data")
+     }
+
+    
+     
+     const matkaexposer = await Matkabet.find({userId: _id, status:"pending"}).select({betamount:1});
+     const balanceData = await Balance.findOne({userId: _id});
+     const userData = await User.findById(_id);
+      let totalexposer = 0;
+      matkaexposer.forEach((element:any) => {
+
+        totalexposer += element.betamount;
+
+      });
+      if (totalexposer + data.betamount + balanceData?.exposer > balanceData?.balance!) {
+        return this.fail(res, "Insufficient balance");
+      }
+      const newBet = new Matkabet({
+        gamename: data.matchName,
+        id: data.marketId,
+    
+        Date: data.Date,
+        result: "pending",
+        
+        roundid: data.matchId,
+        odds: data.odds,
+        betamount: data.stack,
+        bettype: data.gtype,
+        userId: _id,
+        parentstr: userData?.parentStr,
+        parentId: userData?.parentId,
+        bet_on: data.betOn,
+        status: "pending"
+      })
+      await newBet.save();
+
+      await balanceData!.updateOne({matkaexposer:totalexposer + data.betamount})
+      return this.success(res, newBet, "Bet placed successfully");
+
+
+    }
+    catch (e: any) {
+      console.log(e);
+      return this.fail(res, e);
+    }
+
+
+}
+
+
+
+
 
 
   activeFancies = async (req: Request, res: Response): Promise<Response> => {

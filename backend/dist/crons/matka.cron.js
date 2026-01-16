@@ -1,0 +1,176 @@
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.startMatkaCron = void 0;
+const node_cron_1 = __importDefault(require("node-cron"));
+const Matkagames_1 = __importDefault(require("../models/Matkagames"));
+// export const startMatkaCron = () => {cron.schedule("* * * * *", async () => {
+//   try {
+//     console.log("⏱ Matka cron running...");
+//     const now = new Date();
+//     const minutesNow = now.getHours() * 60 + now.getMinutes();
+//     // today 00:00
+//     const today = new Date();
+//     today.setHours(0, 0, 0, 0);
+//     // const matkas = await Matka.find({});
+//         const matkas = [{
+//   opentime: { hour: 9, minute: 0 },
+//   closetime: { hour: 3, minute: 0 },
+//    _id: "6964e9807c22caf6c6ca303b",
+//    gamename: 'Dishawar',
+//    id: '4',
+//   isActive: false,
+//    isNextDayClose: true
+//  },{
+//   opentime: { hour: 11, minute: 2 },
+//   closetime: { hour: 3, minute: 0 },
+//    _id:" 6964e9807c22caf6c6ca303b",
+//    gamename: 'Fridabad',
+//    id: '1',
+//   isActive: false,
+//    isNextDayClose: true
+//  }]
+//     console.log(`Found ${matkas.length} matka games to process.`);
+//     for (const m of matkas) {
+//       const openMin = Number(m.opentime.hour) * 60 + Number(m.opentime.minute);
+//       const closeMin = Number(m.closetime.hour) * 60 + Number(m.closetime.minute);
+//       // ---------- OPEN LOGIC ----------
+//       const isOpenTime =
+//         openMin < closeMin
+//           ? minutesNow === openMin
+//           : minutesNow === openMin; // next-day handled by close
+//     console.log(m,isOpenTime, minutesNow, openMin, closeMin);
+//       if (isOpenTime) {
+//         const exists = await Matkagame.findOne({
+//           id: m.id,
+//           date: today,
+//         });
+//         if (!exists) {
+//           await Matkagame.create({
+//             id: m.id,
+//             gamename: m.gamename,
+//             Date: today,
+//             opentime: m.opentime,
+//             closetime: m.closetime,
+//             isActive: true,
+//             result: "pending",
+//             roundid: `${m.gamename}-${today.toISOString().split("T")[0]}`,
+//           });
+//           console.log(`🟢 OPENED: ${m.gamename}`);
+//         }
+//       }
+//       // ---------- CLOSE LOGIC ----------
+//       const isCloseTime =
+//         openMin < closeMin
+//           ? minutesNow === closeMin
+//           : minutesNow === closeMin; // Dishawar 3 AM
+//       if (isCloseTime) {
+//         await Matkagame.updateMany(
+//           {
+//             id: m.id,
+//             isActive: true,
+//           },
+//           { $set: { isActive: false } }
+//         );
+//         console.log(`🔴 CLOSED: ${m.gamename}`);
+//       }
+//     }
+//   } catch (err) {
+//     console.error("CRON ERROR:", err);
+//   }
+// })};
+const getISTNow = () => new Date(Date.now() + 5.5 * 60 * 60 * 1000);
+const getISTMinutes = () => {
+    const d = getISTNow();
+    return d.getHours() * 60 + d.getMinutes();
+};
+const getISTDateOnly = () => {
+    const d = getISTNow();
+    d.setHours(0, 0, 0, 0);
+    return d;
+};
+const getISTDateString = () => {
+    return getISTNow().toISOString().split("T")[0];
+};
+const startMatkaCron = () => {
+    node_cron_1.default.schedule("* * * * *", () => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            console.log("⏱ Matka cron running (IST)...");
+            const minutesNow = getISTMinutes();
+            const today = getISTDateOnly();
+            const todayStr = getISTDateString();
+            const matkas = [
+                {
+                    opentime: { hour: 9, minute: 0 },
+                    closetime: { hour: 3, minute: 0 },
+                    gamename: "Dishawar",
+                    id: "4",
+                    isNextDayClose: true,
+                },
+                {
+                    opentime: { hour: 11, minute: 2 },
+                    closetime: { hour: 3, minute: 0 },
+                    gamename: "Fridabad",
+                    id: "1",
+                    isNextDayClose: true,
+                },
+            ];
+            for (const m of matkas) {
+                const openMin = Number(m.opentime.hour) * 60 +
+                    Number(m.opentime.minute);
+                let closeMin = Number(m.closetime.hour) * 60 +
+                    Number(m.closetime.minute);
+                // 🔥 next-day close fix
+                if (m.isNextDayClose && closeMin < openMin) {
+                    closeMin += 1440; // add 24h
+                }
+                let currentMin = minutesNow;
+                if (m.isNextDayClose && minutesNow < openMin) {
+                    currentMin += 1440;
+                }
+                console.log(m.gamename, "NOW:", currentMin, "OPEN:", openMin, "CLOSE:", closeMin);
+                // ---------- OPEN ----------
+                if (currentMin === openMin) {
+                    const exists = yield Matkagames_1.default.findOne({
+                        id: m.id,
+                        date: today,
+                    });
+                    if (!exists) {
+                        yield Matkagames_1.default.create({
+                            id: m.id,
+                            gamename: m.gamename,
+                            date: today,
+                            opentime: m.opentime,
+                            closetime: m.closetime,
+                            isActive: true,
+                            result: "pending",
+                            roundid: `${m.gamename}-${todayStr}`, // ✅ IST
+                        });
+                        console.log(`🟢 OPENED: ${m.gamename}`);
+                    }
+                }
+                // ---------- CLOSE ----------
+                if (currentMin === closeMin) {
+                    yield Matkagames_1.default.updateMany({ id: m.id, isActive: true }, { $set: { isActive: false } });
+                    console.log(`🔴 CLOSED: ${m.gamename}`);
+                }
+            }
+        }
+        catch (err) {
+            console.error("CRON ERROR:", err);
+        }
+    }));
+};
+exports.startMatkaCron = startMatkaCron;
+//# sourceMappingURL=matka.cron.js.map

@@ -72,6 +72,12 @@ export class FancyRoutes {
       this.FancyController.apiupdateUserBal,
     )
 
+      this.router.post(
+      '/place-matka-bet',
+      Passport.authenticateJWT,
+      this.FancyController.placeMatkabet,
+    )
+
     // this.router.get(
     //   "/change-status-Fancy",
     //   Passport.authenticateJWT,

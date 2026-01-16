@@ -50,14 +50,14 @@ class App {
         });
     }
     // Loads your Server
-    loadServer() {
-        Log_1.default.info('Server :: Booting @ Master...');
-        Express_1.default.init();
-    }
     // Loads the Database Pool
     loadDatabase() {
         Log_1.default.info('Database :: Booting @ Master...');
         Database_1.Database.init();
+    }
+    loadServer() {
+        Log_1.default.info('Server :: Booting @ Master...');
+        Express_1.default.init();
     }
 }
 exports.default = new App();
