@@ -468,9 +468,11 @@ const NewAccountStatement = () => {
 
       if (stmt.narration.length === 0) return null;
 
+      console.log(filteredItems, "filtered itemss");
+
       return (
         <tr key={`${stmt._id}${index}`}>
-          <td>{stmt?.stmt?.allBets ? stmt?.stmt?.selectionId : ""}</td>
+          <td>{stmt?.stmt?.allBets ? stmt?.stmt?.selectionId : stmt?.narration}</td>
           <td>
             {stmt?.stmt?.allBets
               ? stmt?.stmt?.allBets[0]?.result[0]?.marketName

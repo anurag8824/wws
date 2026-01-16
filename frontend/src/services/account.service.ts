@@ -18,6 +18,11 @@ class AccountService {
   matkagamelist() {
     return api.get(`matka-list`);
   }
+
+  matkagamelistRollBack() {
+    return api.get(`matka-list-rollback`);
+  }
+
    getBets32(data:any) {
     return api.post(`bet32`,data);
   }

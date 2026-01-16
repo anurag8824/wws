@@ -170,6 +170,18 @@ export class FancyController extends ApiController {
     }
   }
 
+  matkaListRollback = async (req: Request, res: Response) => {
+    try {
+      const matkaList = await Matkagames.find().lean();
+
+      return this.success(res, matkaList);
+    } catch (e: any) {
+      return this.fail(res, e);
+    }
+  }
+
+
+
   // Matka Profit Loss result
   Matkacal = async (roundid, result) => {
     try {
@@ -263,9 +275,10 @@ export class FancyController extends ApiController {
     }
   }
 
-  rollbackMatkaResult = async (req: Request, res: Response): Promise<Response> => {
+  rollbackMatkaResultolll = async (req: Request, res: Response): Promise<Response> => {
     try{
       const { roundid }: any = req.query;
+      console.log(roundid, "matka rollback roundid"); 
       const userbet: any = await Matkabet.aggregate([
         {
           $match: {
@@ -283,6 +296,7 @@ export class FancyController extends ApiController {
           },
         },
       ]);
+      console.log(userbet, "matka rollback userbet");
       let userIdList: any = [];
       const parentIdList: any = [];
       const declare_result = userbet.map(async (Item: any) => {
@@ -306,6 +320,8 @@ export class FancyController extends ApiController {
             }
           }
         );
+        console.log(settle_single, "matka settle single");
+        
         Promise.all(settle_single);
         userIdList.push(ObjectId(Item._id));
       });
@@ -335,6 +351,76 @@ export class FancyController extends ApiController {
 
     }
   }
+
+  rollbackMatkaResult = async (req: Request, res: Response): Promise<Response> => {
+    try {
+      const { roundid }: any = req.query;
+      console.log(roundid, "matka rollback roundid");
+  
+      const userbet: any = await Matkabet.aggregate([
+        {
+          $match: {
+            status: "completed",
+            roundid: roundid,
+          },
+        },
+        {
+          $group: {
+            _id: "$userId",
+            allBets: { $push: "$$ROOT" },
+          },
+        },
+      ]);
+  
+      console.log(userbet, "matka rollback userbet");
+  
+      let userIdList: any[] = [];
+  
+      const rollbackPromises = userbet.map(async (item: any) => {
+        userIdList.push(ObjectId(item._id));
+  
+        const deletePromises = item.allBets.map(async (bet: any) => {
+          await AccoutStatement.deleteMany({
+            betId: ObjectId(bet._id),
+          });
+        });
+  
+        await Promise.all(deletePromises);
+      });
+  
+      await Promise.all(rollbackPromises);
+  
+      // Bets ko pending karo
+      await Matkabet.updateMany(
+        {
+          userId: { $in: userIdList },
+          roundid: roundid,
+          status: "completed",
+        },
+        { $set: { status: "pending" } }
+      );
+  
+      // Game result reset
+      await Matkagames.updateOne(
+        { roundid: roundid },
+        { $set: { result: "pending", isActive: false } }
+      );
+  
+      const uniqueUsers = [...new Set(userIdList.map(id => id.toString()))].map(
+        id => ObjectId(id)
+      );
+  
+      if (uniqueUsers.length > 0) {
+        await this.updateUserAccountStatement(uniqueUsers, []);
+      }
+  
+      return this.success(res, uniqueUsers, "Rollback successful");
+    } catch (e: any) {
+      console.error(e);
+      return this.fail(res, e);
+    }
+  };
+  
   activeFancies = async (req: Request, res: Response): Promise<Response> => {
     try {
       const { matchId, gtype }: any = req.query;

@@ -55,6 +55,10 @@ class BetService {
     return api.post("matka-result", data)
   }
 
+  matkaresultRollback(data:any){
+    return api.get(`matka-rollback?roundid=${data}`)
+  }
+
 
   oneledger() {
     return api.get("all-client-ledger/one");

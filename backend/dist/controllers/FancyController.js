@@ -150,6 +150,15 @@ class FancyController extends ApiController_1.ApiController {
                 return this.fail(res, e);
             }
         });
+        this.matkaListRollback = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const matkaList = yield Matkagames_1.default.find().lean();
+                return this.success(res, matkaList);
+            }
+            catch (e) {
+                return this.fail(res, e);
+            }
+        });
         // Matka Profit Loss result
         this.Matkacal = (roundid, result) => __awaiter(this, void 0, void 0, function* () {
             try {
@@ -216,9 +225,10 @@ class FancyController extends ApiController_1.ApiController {
                 return this.fail(res, e);
             }
         });
-        this.rollbackMatkaResult = (req, res) => __awaiter(this, void 0, void 0, function* () {
+        this.rollbackMatkaResultolll = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const { roundid } = req.query;
+                console.log(roundid, "matka rollback roundid");
                 const userbet = yield Matkabet_1.default.aggregate([
                     {
                         $match: {
@@ -233,6 +243,7 @@ class FancyController extends ApiController_1.ApiController {
                         },
                     },
                 ]);
+                console.log(userbet, "matka rollback userbet");
                 let userIdList = [];
                 const parentIdList = [];
                 const declare_result = userbet.map((Item) => __awaiter(this, void 0, void 0, function* () {
@@ -249,6 +260,7 @@ class FancyController extends ApiController_1.ApiController {
                             });
                         }
                     }));
+                    console.log(settle_single, "matka settle single");
                     Promise.all(settle_single);
                     userIdList.push(ObjectId(Item._id));
                 }));
@@ -266,6 +278,55 @@ class FancyController extends ApiController_1.ApiController {
                 return this.success(res, userbet, "");
             }
             catch (e) {
+                return this.fail(res, e);
+            }
+        });
+        this.rollbackMatkaResult = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { roundid } = req.query;
+                console.log(roundid, "matka rollback roundid");
+                const userbet = yield Matkabet_1.default.aggregate([
+                    {
+                        $match: {
+                            status: "completed",
+                            roundid: roundid,
+                        },
+                    },
+                    {
+                        $group: {
+                            _id: "$userId",
+                            allBets: { $push: "$$ROOT" },
+                        },
+                    },
+                ]);
+                console.log(userbet, "matka rollback userbet");
+                let userIdList = [];
+                const rollbackPromises = userbet.map((item) => __awaiter(this, void 0, void 0, function* () {
+                    userIdList.push(ObjectId(item._id));
+                    const deletePromises = item.allBets.map((bet) => __awaiter(this, void 0, void 0, function* () {
+                        yield AccountStatement_1.AccoutStatement.deleteMany({
+                            betId: ObjectId(bet._id),
+                        });
+                    }));
+                    yield Promise.all(deletePromises);
+                }));
+                yield Promise.all(rollbackPromises);
+                // Bets ko pending karo
+                yield Matkabet_1.default.updateMany({
+                    userId: { $in: userIdList },
+                    roundid: roundid,
+                    status: "completed",
+                }, { $set: { status: "pending" } });
+                // Game result reset
+                yield Matkagames_1.default.updateOne({ roundid: roundid }, { $set: { result: "pending", isActive: false } });
+                const uniqueUsers = [...new Set(userIdList.map(id => id.toString()))].map(id => ObjectId(id));
+                if (uniqueUsers.length > 0) {
+                    yield this.updateUserAccountStatement(uniqueUsers, []);
+                }
+                return this.success(res, uniqueUsers, "Rollback successful");
+            }
+            catch (e) {
+                console.error(e);
                 return this.fail(res, e);
             }
         });

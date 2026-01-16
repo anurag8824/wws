@@ -650,7 +650,7 @@ const [userList, setUserList] = React.useState<any>({});
           </div>
 
           <div
-            style={{ marginLeft: "-5rem" }}
+            style={{ marginLeft: "-9rem" }}
             className={`side-menu-buttonn  ${
               !isOpen2 ? "hidden" : "block"
             } font-bold text-white md:hidden`}
@@ -733,7 +733,7 @@ const [userList, setUserList] = React.useState<any>({});
             <nav className="navbar navbar-expand btco-hover-menu ">
               <div className="collapse navbar-collapse">
                 <ul className="list-unstyled navbar-nav navbar-new grid">
-                  {/* <li className="nav-item border-b md:w-60 w-fit ">
+                  {/* <li className="nav-item border-b-4 border-black md:w-60 w-fit ">
                     <CustomLink
                       onClick={toggleDrawer}
                       className="md:flex gap-2 md:flex-row flex flex-col items-center"
@@ -759,7 +759,7 @@ const [userList, setUserList] = React.useState<any>({});
                     </CustomLink>
                   </li>
 
-                  {/* <li className="nav-item border-b md:w-60">
+                  {/* <li className="nav-item border-b-4 border-black md:w-60">
                     <CustomLink
                       onClick={toggleDrawer}
                       className="md:flex md:flex-row flex flex-col gap-2 items-center"
@@ -818,9 +818,9 @@ const [userList, setUserList] = React.useState<any>({});
 
                     </CustomLink>
 
-                    { dropdownOpen ? <div  className="dropdown-menuj bg-neutral-700 md:pl-2   absolutek z-50 hiddenj group-hover:block w-full">
+                    { dropdownOpen ? <div style={{    background: "rgb(134 100 226 / 82%)"}}  className="dropdown-menuj bg-neutral-700 md:pl-2   absolutek z-50 hiddenj group-hover:block w-full">
                       {getRoleOptions().map((role) => (
-                        <li key={role.key} className="border-b pb-2">
+                        <li key={role.key} className="border-b-4 border-black pb-2">
                           <CustomLink
                             to={`/list-clients/${userState?.user?.username}/${role.key}`}
                             // onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -871,7 +871,7 @@ const [userList, setUserList] = React.useState<any>({});
                     </CustomLink>
                   </li>
 
-                  <li className="nav-item hidden dropdown border-b md:w-60">
+                  <li className="nav-item hidden dropdown border-b-4 border-black md:w-60">
                     <a onClick={() => setDropdownOpen2(!dropdownOpen2)} className="md:flex md:flex-row flex flex-col gap-2 items-center">
                       <SportsSoccerIcon className="text-warning" />
                       <b className="md:text-lg text-xs font-medium text-white">
@@ -924,7 +924,7 @@ const [userList, setUserList] = React.useState<any>({});
                     </div> : ""}
                   </li>
 
-                  {/* <li className="nav-item dropdown border-b md:w-60">
+                  {/* <li className="nav-item dropdown border-b-4 border-black md:w-60">
                     <a className="md:flex md:flex-row flex flex-col gap-2 items-center">
                       <SummarizeIcon className="text-warning" />
                       <b className="md:text-lg text-xs font-medium text-white">
@@ -951,7 +951,7 @@ const [userList, setUserList] = React.useState<any>({});
                     </ul>
                   </li> */}
 
-                  <li className="nav-item hidden dropdown border-b md:w-60">
+                  <li className="nav-item hidden dropdown border-b-4 border-black md:w-60">
                     <a className="md:flex md:flex-row flex flex-col gap-2 items-center">
                       <SummarizeIcon className="text-warning" />
                       <b className="md:text-lg text-xs font-medium text-white">
@@ -1080,7 +1080,7 @@ const [userList, setUserList] = React.useState<any>({});
                     </ul>
                   </li>
 
-                  {/* <li className={`nav-item border-b md:w-60 ${activeMenu === "Casino" ? "bg-active": ""}`}>
+                  {/* <li className={`nav-item border-b-4 border-black md:w-60 ${activeMenu === "Casino" ? "bg-active": ""}`}>
                     <CustomLink
                       // onClick={toggleDrawer}
                       onClick={() => { toggleDrawer(); setActiveMenu("Casino");}}
@@ -1094,7 +1094,7 @@ const [userList, setUserList] = React.useState<any>({});
                     </CustomLink>
                   </li> */}
 
-                  {/* <li className="nav-item border-b md:w-60">
+                  {/* <li className="nav-item border-b-4 border-black md:w-60">
                     <CustomLink
                       onClick={toggleDrawer}
                       className="md:flex md:flex-row flex flex-col gap-2 items-center"
@@ -1107,7 +1107,7 @@ const [userList, setUserList] = React.useState<any>({});
                     </CustomLink>
                   </li> */}
 
-                  {/* <li className="nav-item dropdown border-b md:w-60">
+                  {/* <li className="nav-item dropdown border-b-4 border-black md:w-60">
                     <a className="md:flex md:flex-row flex flex-col gap-2 items-center">
                       <SummarizeIcon className="text-warning" />
                       <b className="md:text-lg text-xs font-medium text-white">
@@ -1181,14 +1181,14 @@ const [userList, setUserList] = React.useState<any>({});
                    { dropdownOpen3 ?  <div
                       className="dropdown-menuf bg-neutral-700 md:pl-2"
                       aria-labelledby="navbarDropdownMenuLink"
-                      style={{background:"darkgoldenrod"}}
+                      style={{background: "rgb(134 100 226 / 82%)"}}
                     >
-                      <li className="border-b pb-2">
+                      <li className="border-b-4 border-black pb-2">
                         <CustomLink
                         //  onClick={() => setDropdownOpen3(!dropdownOpen3)}
                         onClick={() => {toggleDrawer() ; setActiveMenu("My");}}
                           to="/my-ledger"
-                          className={`dropdown-item border-b ${activeMenu === "My" ? "bg-active" : ""}`}
+                          className={`dropdown-item border-b-4 border-black ${activeMenu === "My" ? "bg-active" : ""}`}
                         >
                           <b className="text-white mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
                             <ListIcon className="text-warning" />
@@ -1197,12 +1197,12 @@ const [userList, setUserList] = React.useState<any>({});
                         </CustomLink>
                       </li>
 
-                      <li className="border-b pb-2">
+                      <li className="border-b-4 border-black pb-2">
                         <CustomLink
                           to="/all-settlement"
                           // onClick={() => setDropdownOpen3(!dropdownOpen3)}
                           onClick={() => {toggleDrawer() ; setActiveMenu("All");}}
-                          className={`dropdown-item border-b border-white/30 ${activeMenu === "All" ? "bg-active" : ""}`}
+                          className={`dropdown-item border-b-4 border-black border-white/30 ${activeMenu === "All" ? "bg-active" : ""}`}
                         >
                           <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
                             <ListIcon className="text-warning" />
@@ -1215,12 +1215,12 @@ const [userList, setUserList] = React.useState<any>({});
                         </CustomLink>
                       </li>
 
-                      <li className="border-b pb-2">
+                      <li className="border-b-4 border-black pb-2">
                         <CustomLink
                           to="/total-profit"
                           // onClick={() => setDropdownOpen3(!dropdownOpen3)}
                           onClick={() => {toggleDrawer() ; setActiveMenu("Total");}}
-                          className={`dropdown-item  border-b border-white/30 ${activeMenu === "Total" ? "bg-active" : ""}`}
+                          className={`dropdown-item  border-b-4 border-black border-white/30 ${activeMenu === "Total" ? "bg-active" : ""}`}
 
                         >
                           <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
@@ -1321,7 +1321,7 @@ const [userList, setUserList] = React.useState<any>({});
                     </ul>
                   </li> */}
 
-                  {/* <li className="nav-item dropdown border-b md:w-60">
+                  {/* <li className="nav-item dropdown border-b-4 border-black md:w-60">
                     <a className="md:flex md:flex-row flex flex-col gap-2 items-center ">
                       <CasinoIcon className="text-warning" />
                       <b className="md:text-lg text-xs font-medium text-white">
@@ -1366,7 +1366,7 @@ const [userList, setUserList] = React.useState<any>({});
                      { dropdownOpen4 ? <div
                         className="dropdown-menud bg-none  md:pl-2"
                         aria-labelledby="navbarDropdownMenuLink"
-                        // style={{background:"#424242"}}
+                        style={{ background: "rgb(134 100 226 / 82%)"}}
                       >
                         {userState?.user?.role === RoleType.admin && (
                           <>
@@ -1382,7 +1382,7 @@ const [userList, setUserList] = React.useState<any>({});
                                 </b>
                               </CustomLink>
                             </li> */}
-                            <li className="border-b pb-2">
+                            <li className="border-b-4 border-black pb-2">
                               <CustomLink
                                 // onClick={() => setDropdownOpen4(!dropdownOpen4)}
                                 onClick={() => {toggleDrawer() ; setActiveMenu("Adm");}}
@@ -1396,14 +1396,14 @@ const [userList, setUserList] = React.useState<any>({});
                               </CustomLink>
                             </li>
 
-                            <li className="border-b pb-2">
+                            <li className="border-b-4 border-black pb-2">
                               <CustomLink
                                 //  onClick={() => setDropdownOpen4(!dropdownOpen4)}
                                 onClick={() => {toggleDrawer() ; setActiveMenu("CS");}}
                                 to='/casino-list'
                                 className={`dropdown-item ${activeMenu === "CS" ? "bg-active" : ""}`}
                               >
-                                <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
+                                <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
                                   <TuneIcon className="text-warning" />
                                   Casino List
                                 </b>
@@ -1411,7 +1411,7 @@ const [userList, setUserList] = React.useState<any>({});
                             </li>
 
 
-                            <li className="border-b pb-2">
+                            <li className="border-b-4 border-black pb-2">
                               <CustomLink
                                 // onClick={() => setDropdownOpen4(!dropdownOpen4)}
                                 // to="/sports-list/active-matches"
@@ -1419,14 +1419,14 @@ const [userList, setUserList] = React.useState<any>({});
                                 to="/active-matches/4"
                                 className={`dropdown-item ${activeMenu === "BM" ? "bg-active" : ""}`}
                               >
-                                <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
+                                <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
                                   <TuneIcon className="text-warning" />
                                   {"Block Markets"}
                                 </b>
                               </CustomLink>
                             </li>
 
-                            <li className="border-b pb-2">
+                            <li className="border-b-4 border-black pb-2">
                               <CustomLink
                                 // onClick={() => setDropdownOpen4(!dropdownOpen4)}
                                 // to="/sports-list/active-matches"
@@ -1434,21 +1434,39 @@ const [userList, setUserList] = React.useState<any>({});
                                 to="/matka-results"
                                 className={`dropdown-item ${activeMenu === "BM" ? "bg-active" : ""}`}
                               >
-                                <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
+                                <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
                                   <TuneIcon className="text-warning" />
                                   {"Matka Markets"}
                                 </b>
                               </CustomLink>
                             </li>
 
-                            <li className="border-b pb-2">
+
+                            <li className="border-b-4 border-black pb-2">
+                              <CustomLink
+                                // onClick={() => setDropdownOpen4(!dropdownOpen4)}
+                                // to="/sports-list/active-matches"
+                                onClick={() => {toggleDrawer() ; setActiveMenu("BM");}}
+                                to="/matka-results-rollback"
+                                className={`dropdown-item ${activeMenu === "BM" ? "bg-active" : ""}`}
+                              >
+                                <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
+                                  <TuneIcon className="text-warning" />
+                                  {"Matka Rollback Results"}
+                                </b>
+                              </CustomLink>
+                            </li>
+
+                         
+
+                            <li className="border-b-4 border-black pb-2">
                               <CustomLink
                                 // onClick={() => setDropdownOpen4(!dropdownOpen4)}
                                 onClick={() => {toggleDrawer() ; setActiveMenu("DB");}}
                                 to="/unsettledbet"
                                 className={`dropdown-item ${activeMenu === "DB" ? "bg-active" : ""}`}
                               >
-                                <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
+                                <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
                                   <DeleteIcon className="text-warning" />
                                   Deleted Bets
                                 </b>
@@ -1456,13 +1474,13 @@ const [userList, setUserList] = React.useState<any>({});
                             </li>
 
 
-                            <li className="border-b pb-2">
+                            <li className="border-b-4 border-black pb-2">
                           <CustomLink
                             onClick={toggleDrawer}
                             to="/deleted-bets"
                             className="dropdown-item"
                           >
-                            <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
+                            <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
                               <ListIcon className="text-warning" />
                               Deleted Bets History
                             </b>
@@ -1470,14 +1488,14 @@ const [userList, setUserList] = React.useState<any>({});
                         </li>
 
 
-                            <li className="border-b pb-2">
+                            <li className="border-b-4 border-black pb-2">
                               <CustomLink
                                 // onClick={() => setDropdownOpen4(!dropdownOpen4)}
                                 onClick={() => {toggleDrawer() ; setActiveMenu("NC");}}
                                 to="/notice"
                                 className={`dropdown-item ${activeMenu === "NC" ? "bg-active" : ""}`}
                               >
-                                <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
+                                <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
                                   <ListIcon className="text-warning" />
                                   Notice
                                 </b>
@@ -1485,14 +1503,14 @@ const [userList, setUserList] = React.useState<any>({});
                             </li>
 
 
-                            <li className="border-b pb-2">
+                            <li className="border-b-4 border-black pb-2">
                               <CustomLink
                                 // onClick={() => setDropdownOpen4(!dropdownOpen4)}
                                 onClick={() => {toggleDrawer() ; setActiveMenu("MO");}}
                                 to="/manage-odds"
                                 className={`dropdown-item ${activeMenu === "MO" ? "bg-active" : ""}`}
                               >
-                                <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
+                                <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
                                   <ListIcon className="text-warning" />
                                   Manage Odds
                                 </b>

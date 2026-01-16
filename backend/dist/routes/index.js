@@ -51,6 +51,7 @@ router.get('/api/result-market-fancy-auto', new FancyController_1.FancyControlle
 router.get('/api/get-business-fancy-list', new BetController_1.BetController().fancybetListSelection);
 router.post('/api/update-fancy-result', new FancyController_1.FancyController().updatefancyresultapi);
 router.get('/api/matka-list', new FancyController_1.FancyController().matkaList66);
+router.get('/api/matka-list-rollback', new FancyController_1.FancyController().matkaListRollback);
 router.post('/api/matka-result', new FancyController_1.FancyController().matkaResultapi);
 router.get('/api/matka-rollback', new FancyController_1.FancyController().rollbackMatkaResult);
 router.get('/api/resync_bookmaker_id', new SportsController_1.default().saveMatchResyncCron);

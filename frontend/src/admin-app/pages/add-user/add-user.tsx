@@ -45,6 +45,8 @@ const validationSchema = Yup.object().shape({
 
 
   mcom: Yup.string(),
+  matcom: Yup.string(),
+
   // mcom: Yup.string()
   // // .required("mcom is required")
   // .test("is-valid-mcom", "mcom must be 0 or less than or equal to 2", (value) => {
@@ -822,6 +824,27 @@ React.useEffect(() => {
                             defaultValue={0}
                             min="0"
                             max="2"
+                            // required
+                            step="0.01" 
+                            type="number"
+                          />
+
+                          
+                         
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <label htmlFor="matcom">Matka Commision(≤10%)</label>
+                          <input
+                            className="form-control"
+                            placeholder="M Comm Limit"
+                            {...register("matcom")}
+                            id="matcom"
+                            defaultValue={0}
+                            min="0"
+                            max="10"
                             // required
                             step="0.01" 
                             type="number"

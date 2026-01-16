@@ -39,6 +39,8 @@ const Notice = React.lazy(() => import('./pages/settings/Notices'))
 const ManageOdds = React.lazy(() => import('./pages/settings/ManageOdds'))
 const DeletedAllBets = React.lazy(() => import('./pages/UnsetteleBetHistory/DeletedBets'))
 const MatkaResult = React.lazy(() => import('./pages/matka/matka-result'))
+const MatkaResultRollback = React.lazy(() => import('./pages/matka/matka-rollback'))
+
 
 
 
@@ -138,6 +140,8 @@ const AdminRoutes = () => {
             { path: "notice", element: <Notice/>},
             { path: "manage-odds", element: <ManageOdds />},
             { path: "matka-results", element: <MatkaResult />},
+            { path: "matka-results-rollback", element: <MatkaResultRollback />},
+
 
             
 

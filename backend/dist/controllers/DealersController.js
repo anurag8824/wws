@@ -245,7 +245,7 @@ class DealersController extends ApiController_1.ApiController {
             let changePassAndTxn = false;
             try {
                 session.startTransaction();
-                const { password, username, code, share, pshare, mcom, scom, sendamount, parent, partnership, role, fullname, city, phone, creditRefrences, exposerLimit, userSetting,
+                const { password, username, code, share, pshare, mcom, matcom, scom, sendamount, parent, partnership, role, fullname, city, phone, creditRefrences, exposerLimit, userSetting,
                 // transactionPassword,
                  } = req.body;
                 console.log(req.body, "req body for code ");
@@ -288,6 +288,7 @@ class DealersController extends ApiController_1.ApiController {
                     share,
                     pshare,
                     mcom,
+                    matcom,
                     scom,
                     code: username,
                     password,
@@ -342,7 +343,7 @@ class DealersController extends ApiController_1.ApiController {
                 //   status: () => res, // allow chaining like res.status().json()
                 //   json: () => res, // dummy implementation for json
                 // }
-                yield axios_1.default.post("http://localhost:3010/api/user-account-balance", { userId: newUser._id,
+                yield axios_1.default.post("https://api.11wickets.pro/api/user-account-balance", { userId: newUser._id,
                     parentUserId: parentUser._id,
                     amount: sendamount,
                     narration: 'Initial deposit on signup',
@@ -559,6 +560,7 @@ class DealersController extends ApiController_1.ApiController {
                 password: 1,
                 pshare: 1,
                 mcom: 1,
+                matcom: 1,
                 scom: 1,
                 code: 1,
                 parentId: 1,
@@ -725,6 +727,7 @@ class DealersController extends ApiController_1.ApiController {
                 password: 1,
                 pshare: 1,
                 mcom: 1,
+                matcom: 1,
                 scom: 1,
                 code: 1,
                 parentId: 1,
@@ -1045,6 +1048,7 @@ class DealersController extends ApiController_1.ApiController {
                 password: 1,
                 pshare: 1,
                 mcom: 1,
+                matcom: 1,
                 scom: 1,
                 code: 1,
                 parentId: 1,
@@ -1116,6 +1120,7 @@ class DealersController extends ApiController_1.ApiController {
                 password: 1,
                 pshare: 1,
                 mcom: 1,
+                matcom: 1,
                 scom: 1,
                 code: 1,
                 creditRefrences: 1,
