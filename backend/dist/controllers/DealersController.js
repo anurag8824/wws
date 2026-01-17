@@ -197,6 +197,33 @@ class DealersController extends ApiController_1.ApiController {
             }
         });
     }
+    editMatkaLimit(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { _id, value } = req.body;
+                const userToUpdate = yield User_1.User.findById(_id);
+                if (!userToUpdate) {
+                    // Agar 'this.fail' kaam na kare, toh direct 404 bhejein temporarily debug karne ke liye
+                    return res.status(404).json({ message: "User not found" });
+                }
+                const limitValue = parseInt(value);
+                if (isNaN(limitValue)) {
+                    return res.status(400).json({ message: "Invalid number format" });
+                }
+                userToUpdate.matkalimit = limitValue;
+                yield userToUpdate.save();
+                // Hamesha object bhejein
+                return res.json({
+                    success: true,
+                    message: "Matka Limit updated successfully"
+                });
+            }
+            catch (e) {
+                console.log(e, "Error updating limit");
+                return res.status(500).json({ message: "Server error: " + e.message });
+            }
+        });
+    }
     deleteUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const session = yield Database_1.Database.getInstance().startSession();

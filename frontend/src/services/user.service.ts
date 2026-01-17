@@ -53,6 +53,11 @@ class UserService {
   }
 
 
+  editMatkacom(data:any){
+    return api.post('/edit-matkalimit', data)
+  }
+
+
   deleteU(data:any){
     return api.post('/delete-user', data)
   }

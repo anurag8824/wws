@@ -55,6 +55,7 @@ exports.userSchema = new mongoose_1.Schema({
     scom: Number,
     code: String,
     matcom: { type: Number, default: 0 },
+    matkalimit: { type: Number, default: 0 },
 }, {
     timestamps: true,
 });

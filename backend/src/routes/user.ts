@@ -47,6 +47,13 @@ export class UserRoutes {
 
 
     this.router.post(
+      '/edit-matkalimit',
+      Passport.authenticateJWT,
+      this.dealerController.editMatkaLimit,
+    )
+
+
+    this.router.post(
       '/delete-user',
       Http.validateRequest,
       Passport.authenticateJWT,

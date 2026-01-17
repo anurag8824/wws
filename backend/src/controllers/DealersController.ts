@@ -114,6 +114,38 @@ async editComm(req: Request, res: Response): Promise<Response> {
 
 
 
+async editMatkaLimit(req: Request, res: Response): Promise<Response> {
+  try {
+    const { _id, value } = req.body;
+
+    const userToUpdate = await User.findById(_id);
+    if (!userToUpdate) {
+      // Agar 'this.fail' kaam na kare, toh direct 404 bhejein temporarily debug karne ke liye
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const limitValue = parseInt(value);
+    if (isNaN(limitValue)) {
+      return res.status(400).json({ message: "Invalid number format" });
+    }
+
+    userToUpdate.matkalimit = limitValue;
+    await userToUpdate.save();
+
+    // Hamesha object bhejein
+    return res.json({ 
+      success: true, 
+      message: "Matka Limit updated successfully" 
+    });
+
+  } catch (e: any) {
+    console.log(e, "Error updating limit");
+    return res.status(500).json({ message: "Server error: " + e.message });
+  }
+}
+
+
+
 async deleteUser(req: Request, res: Response): Promise<Response> {
   const session = await Database.getInstance().startSession();
   console.log(req.body, "req.body");

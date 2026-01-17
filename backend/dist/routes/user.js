@@ -24,6 +24,7 @@ class UserRoutes {
         /* Dealer Routes */
         this.router.post('/register', user_validation_1.signupValidation, Http_1.default.validateRequest, Passport_1.default.authenticateJWT, this.dealerController.signUp);
         this.router.post('/edit-comm', Http_1.default.validateRequest, Passport_1.default.authenticateJWT, this.dealerController.editComm);
+        this.router.post('/edit-matkalimit', Passport_1.default.authenticateJWT, this.dealerController.editMatkaLimit);
         this.router.post('/delete-user', Http_1.default.validateRequest, Passport_1.default.authenticateJWT, this.dealerController.deleteUser);
         this.router.post('/refresh-token', user_validation_1.refreshTokenValidation, Http_1.default.validateRequest, this.authController.refreshToken);
         this.router.get('/get-user-list', Passport_1.default.authenticateJWT, this.dealerController.getUserList);
