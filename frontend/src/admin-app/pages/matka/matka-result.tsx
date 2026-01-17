@@ -141,7 +141,7 @@ export default function MatkaResult() {
               <th>SR</th>
               <th>Game</th>
               <th>Result</th>
-              <th>Date</th>
+              <th>Round Id</th>
             </tr>
           </thead>
           <tbody>
@@ -149,9 +149,9 @@ export default function MatkaResult() {
               matkaList.map((row:any, idx:any) => (
                 <tr key={idx}>
                   <td>{idx + 1}</td>
-                  <td>{row.gamename}</td>
-                  <td>{row.result}</td>
-                  <td>{new Date().toLocaleDateString("en-GB")}</td>
+                  <td>{row?.gamename}</td>
+                  <td>{row?.result}</td>
+                  <td>{row?.roundid}</td>
 
                 </tr>
               ))

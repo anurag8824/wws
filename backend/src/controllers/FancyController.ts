@@ -121,13 +121,15 @@ export class FancyController extends ApiController {
         totalexposer += element.betamount;
 
       });
-      const Parent_data = await User.findOne({ _id: userData?.parentStr })
+      const Parent_data = await User.findOne({ _id: userData?.parentId })
       if (!Parent_data) {
         return this.fail(res, "parent data is not vaild !")
 
       }
 
+
       const matakaLimit = Parent_data?.matkalimit
+
 
       const result = await Matkabet.aggregate([
         {
@@ -139,7 +141,7 @@ export class FancyController extends ApiController {
         },
         {
           $project: {
-            total: { $multiply: ["$betAmount", "$odds"] }
+            total: { $multiply: ["$betamount", "$odds"] }
           }
         },
         {
@@ -150,7 +152,11 @@ export class FancyController extends ApiController {
         }
       ])
 
+
+
       const totalMatkaExposure = result[0]?.totalExposure || 0
+      console.log(totalMatkaExposure + data.stack*data.odds,"makkttt", matakaLimit,data.stack*data.odds)
+
      
       if(totalMatkaExposure + data.stack*data.odds > matakaLimit ){
         return this.fail(res,"This Number Matka Limit is complete")

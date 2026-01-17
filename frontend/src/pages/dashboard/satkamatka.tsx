@@ -200,7 +200,7 @@ const MatkaDashboard = () => {
 
   const currentMatch = (match: any) => {
     dispatch(setCurrentMatch(match))
-    navigate.go(`/matka-play/${match.gamename}`)
+    navigate.go(`/matka-play/${match.id}`)
   }
 
   return (

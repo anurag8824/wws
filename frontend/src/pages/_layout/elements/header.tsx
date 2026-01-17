@@ -295,13 +295,15 @@ const [userAlldata, setUserAlldata] = React.useState<{ [key: string]: any }>({})
                       <CustomLink
                         onClick={() => {
                           window.location.href =
-                            exposer.sportId &&
-                            Number.isInteger(+exposer.sportId) &&
-                            exposer.sportId != 5000
+                            exposer?.sportId == 900
+                              ? `/matka-play/${exposer.id}`
+                              : exposer?.sportId && exposer.sportId != 5000
                               ? `/odds/${exposer._id}`
                               : `/casino/${casinoSlug}/${exposer._id}`;
+                        
                           setIsOpen(false);
                         }}
+                        
                         to={
                           exposer.sportId &&
                           Number.isInteger(+exposer.sportId) &&

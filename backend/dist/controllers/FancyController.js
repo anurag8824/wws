@@ -114,7 +114,7 @@ class FancyController extends ApiController_1.ApiController {
                 matkaexposer.forEach((element) => {
                     totalexposer += element.betamount;
                 });
-                const Parent_data = yield User_1.User.findOne({ _id: userData === null || userData === void 0 ? void 0 : userData.parentStr });
+                const Parent_data = yield User_1.User.findOne({ _id: userData === null || userData === void 0 ? void 0 : userData.parentId });
                 if (!Parent_data) {
                     return this.fail(res, "parent data is not vaild !");
                 }
@@ -129,7 +129,7 @@ class FancyController extends ApiController_1.ApiController {
                     },
                     {
                         $project: {
-                            total: { $multiply: ["$betAmount", "$odds"] }
+                            total: { $multiply: ["$betamount", "$odds"] }
                         }
                     },
                     {
@@ -140,6 +140,7 @@ class FancyController extends ApiController_1.ApiController {
                     }
                 ]);
                 const totalMatkaExposure = ((_a = result[0]) === null || _a === void 0 ? void 0 : _a.totalExposure) || 0;
+                console.log(totalMatkaExposure + data.stack * data.odds, "makkttt", matakaLimit, data.stack * data.odds);
                 if (totalMatkaExposure + data.stack * data.odds > matakaLimit) {
                     return this.fail(res, "This Number Matka Limit is complete");
                 }

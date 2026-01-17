@@ -646,8 +646,6 @@ const ListClients = () => {
       });
   };
 
-
-
   return (
     <>
       <div style={{}} className="container-fluid">
@@ -1601,8 +1599,8 @@ const ListClients = () => {
                               <a
                                 href={`https://wa.me/?text=${encodeURIComponent(
                                   user.username?.startsWith("C")
-                                    ? `Login Details:\nUsername: ${user.username}\nPassword: ${user.password}\n\nLink:\nClient Link: https://delhi06.com`
-                                    : `Login Details:\nUsername: ${user.username}\nPassword: ${user.password}\n\nLinks:\nAdmin Link: https://delhi06.com/admin\nClient Link: https://delhi06.com`
+                                    ? `Login Details:\nUsername: ${user.username}\nPassword: ${user.password}\n\nLink:\nClient Link: https://11wickets.pro`
+                                    : `Login Details:\nUsername: ${user.username}\nPassword: ${user.password}\n\nLinks:\nAdmin Link: https://11wickets.pro/admin\nClient Link: https://11wickets.pro`
                                 )}`}
                                 target="_blank"
                                 rel="noopener noreferrer"

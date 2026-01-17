@@ -22,6 +22,10 @@ export class BetRoute {
 
     this.router.get('/bets', Passport.authenticateJWT, this.betController.betList)
     this.router.get('/bets22', Passport.authenticateJWT, this.betController.betList22)
+    this.router.get('/matkabets22', Passport.authenticateJWT, this.betController.MatkabetList22)
+
+    
+
         this.router.post('/bet32', Passport.authenticateJWT,this.betController.betList32)
 
 

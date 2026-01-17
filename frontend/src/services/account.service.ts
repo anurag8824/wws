@@ -9,6 +9,10 @@ class AccountService {
     return api.get(`bets22?matchId=${matchId}`);
   }
 
+  getMatkaBets22(matchId: number) {
+    return api.get(`matkabets22?matchId=${matchId}`);
+  }
+
   matchdetail(page:any,limit:any,) {
     return api.get(`matchdetail?page=${page}&limit=${limit}`);
   }

@@ -15,6 +15,7 @@ import axios from "axios";
 import { Fancy } from "../models/Fancy";
 import { any } from "bluebird";
 import { ledger } from "../models/allledager";
+import Matkabet from "../models/Matkabet";
 const ObjectId = Types.ObjectId;
 const default_settings: any = { minBet: 100, maxBet: 100, delay: 0 };
 const defaultRatio: any = {
@@ -1340,6 +1341,40 @@ export class BetController extends ApiController {
       return this.fail(res, e);
     }
   };
+
+  MatkabetList22 = async (req: Request, res: Response): Promise<Response> => {
+    try {
+      const user: any = req.user;
+      const { matchId } = req.query; // 👈 yahi roundid hai
+      let userFilter: any = { userId: ObjectId(user._id) };
+      // let userFilter: any = {
+      //   userId: new ObjectId(user._id),
+      // };
+  
+      // 👇 Admin / Agent ke liye downline bets
+      if (user.role !== RoleType.user) {
+        userFilter = {
+          parentstr: { $in: [String(user._id)] },
+        };
+      }
+  
+      const bets = await Matkabet.find({
+        ...userFilter,
+        roundid: matchId,      // 👈 matchId = roundid
+        status: "pending",
+      })
+        .sort({ createdAt: -1 })
+        .lean();
+  
+      return this.success(res, {
+        roundid: matchId,
+        bets,
+      });
+    } catch (e: any) {
+      return this.fail(res, e);
+    }
+  };
+  
 
   betList32 = async (req: Request, res: Response): Promise<Response> => {
     console.log(req.body, "req.body");
@@ -3289,6 +3324,26 @@ marketDetails = async (req: Request, res: Response): Promise<Response> => {
         },
       ]);
 
+      const matkabets = await Matkabet.aggregate([
+        {
+          $match: {
+            userId: Types.ObjectId(user._id),
+            status: "pending",
+          },
+        },
+        {
+          $group: {
+            _id: "$roundid",
+            id: {$first :"$id"},
+            matchName: { $first: "$roundid" },
+            myCount: { $sum: 1 },
+            roundid: { $first: "$roundid" },
+            sportId: { $first: 900 }
+
+          },
+        },
+      ]);
+
       // const bets = await Bet.aggregate([
       //   {
       //     $match: {
@@ -3335,7 +3390,7 @@ marketDetails = async (req: Request, res: Response): Promise<Response> => {
       //   },
       // ]);
 
-      return this.success(res, bets);
+      return this.success(res, [...bets,...matkabets]);
     } catch (e: any) {
       return this.fail(res, e);
     }

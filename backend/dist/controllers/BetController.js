@@ -28,6 +28,7 @@ const BetLock_1 = require("../models/BetLock");
 const axios_1 = __importDefault(require("axios"));
 const Fancy_1 = require("../models/Fancy");
 const allledager_1 = require("../models/allledager");
+const Matkabet_1 = __importDefault(require("../models/Matkabet"));
 const ObjectId = mongoose_1.Types.ObjectId;
 const default_settings = { minBet: 100, maxBet: 100, delay: 0 };
 const defaultRatio = {
@@ -1157,6 +1158,32 @@ class BetController extends ApiController_1.ApiController {
                 else {
                     return this.success(res, { bets: [], odds_profit: [] });
                 }
+            }
+            catch (e) {
+                return this.fail(res, e);
+            }
+        });
+        this.MatkabetList22 = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const user = req.user;
+                const { matchId } = req.query; // 👈 yahi roundid hai
+                let userFilter = { userId: ObjectId(user._id) };
+                // let userFilter: any = {
+                //   userId: new ObjectId(user._id),
+                // };
+                // 👇 Admin / Agent ke liye downline bets
+                if (user.role !== Role_1.RoleType.user) {
+                    userFilter = {
+                        parentstr: { $in: [String(user._id)] },
+                    };
+                }
+                const bets = yield Matkabet_1.default.find(Object.assign(Object.assign({}, userFilter), { roundid: matchId, status: "pending" }))
+                    .sort({ createdAt: -1 })
+                    .lean();
+                return this.success(res, {
+                    roundid: matchId,
+                    bets,
+                });
             }
             catch (e) {
                 return this.fail(res, e);
@@ -2707,6 +2734,24 @@ class BetController extends ApiController_1.ApiController {
                         },
                     },
                 ]);
+                const matkabets = yield Matkabet_1.default.aggregate([
+                    {
+                        $match: {
+                            userId: mongoose_1.Types.ObjectId(user._id),
+                            status: "pending",
+                        },
+                    },
+                    {
+                        $group: {
+                            _id: "$roundid",
+                            id: { $first: "$id" },
+                            matchName: { $first: "$roundid" },
+                            myCount: { $sum: 1 },
+                            roundid: { $first: "$roundid" },
+                            sportId: { $first: 900 }
+                        },
+                    },
+                ]);
                 // const bets = await Bet.aggregate([
                 //   {
                 //     $match: {
@@ -2752,7 +2797,7 @@ class BetController extends ApiController_1.ApiController {
                 //     },
                 //   },
                 // ]);
-                return this.success(res, bets);
+                return this.success(res, [...bets, ...matkabets]);
             }
             catch (e) {
                 return this.fail(res, e);

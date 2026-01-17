@@ -11,6 +11,8 @@ import { OddsType } from "../../models/IMarket";
 import PlaceBetBox from "./components/place-bet-box";
 import { IUserBetStake } from "../../models/IUserStake";
 import accountService from "../../services/account.service";
+import MyBetComponent from "./components/my-bet.component";
+import MyMatkaBetComponent22 from "./components/my-matka-bet";
 
 const MatkaPlay = () => {
   const { matchId } = useParams(); // 👈 URL se matchId
@@ -42,7 +44,7 @@ const MatkaPlay = () => {
 
 
   // ✅ matching item nikaalo
-  const match = matkaList.find((item:any) => item.gamename == matchId);
+  const match = matkaList.find((item:any) => item.id == matchId);
 
   if (!match) {
     return <div className="text-center mt-3">Match not found</div>;
@@ -231,7 +233,7 @@ const MatkaPlay = () => {
                 {singlePattiNumbers.map((num) => (
                   <div key={num} className="col-4 col-md-3 mb-2">
                     <button   onClick={() => onBet(true, {num, matchId, })} className="btn btn-info w-100">{num}</button>
-                    <span className="btn w-100">0s</span>
+                    <span className="btn w-100">0</span>
                   </div>
                 ))}
               </div>
@@ -263,10 +265,21 @@ const MatkaPlay = () => {
               </div>
             </>
           )}
+
+
         </div>
+
+       
+
       </div>
 
+      <MyMatkaBetComponent22 roundid={match?.roundid} />
+
       <PlaceBetBox stake={matkastake[0]} />
+
+      
+
+
     </div>
   );
 };

@@ -66,6 +66,8 @@ export default function MatkaResultRollback() {
     } catch (err) {
       console.error("Result submit error:", err);
       alert("Result submit failed");
+    }finally {
+      window.location.reload()
     }
 
     
@@ -77,10 +79,10 @@ export default function MatkaResultRollback() {
 <h2 className="ledger-title rounded mb-2 " style={{background:"black" , color:"white"}}>Matka Rollback Result</h2>
 
       {/* ===== FORM ===== */}
-      <form onSubmit={handleSubmit} className="row g-3 mb-4 hidden">
+      <form onSubmit={handleSubmit} className="row g-3 mb-4">
 
         {/* DATE */}
-        <div className="col-md-3">
+        {/* <div className="col-md-3">
           <label className="form-label fw-bold">Date</label>
           <input
             type="date"
@@ -89,7 +91,7 @@ export default function MatkaResultRollback() {
             onChange={(e) => setDate(e.target.value)}
             required
           />
-        </div>
+        </div> */}
 
         {/* MARKET */}
         <div className="col-md-3">
@@ -103,7 +105,7 @@ export default function MatkaResultRollback() {
             <option value="">Select Market</option>
             {matkaList.map((item:any) => (
               <option key={item.matchId} value={item.id}>
-                {item.gamename}
+                {item.roundid}
               </option>
             ))}
           </select>
@@ -142,7 +144,7 @@ export default function MatkaResultRollback() {
               <th>SR</th>
               <th>Game</th>
               <th>Result</th>
-              <th>Date</th>
+              <th>Round Id</th>
               <th>Rollback</th>
 
             </tr>
@@ -154,7 +156,7 @@ export default function MatkaResultRollback() {
                   <td>{idx + 1}</td>
                   <td>{row.gamename}</td>
                   <td>{row.result}</td>
-                  <td>{new Date().toLocaleDateString("en-GB")}</td>
+                  <td>{row.roundid}</td>
                     <td>
                         <button
                         className="btn btn-danger"
@@ -167,6 +169,8 @@ export default function MatkaResultRollback() {
                             } catch (err) {
                             console.error("Rollback error:", err);
                             alert("Rollback failed");
+                            }finally{
+                              window.location.reload()
                             }
                         }}
                         >
