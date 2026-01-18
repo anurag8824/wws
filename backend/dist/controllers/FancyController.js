@@ -301,6 +301,15 @@ class FancyController extends ApiController_1.ApiController {
                     roundid: roundid,
                     status: "completed",
                 }, { $set: { status: "pending" } });
+                const processLedgers = () => __awaiter(this, void 0, void 0, function* () {
+                    const promises = userbet.flatMap((betGroup) => betGroup.allBets.map((singleBet) => __awaiter(this, void 0, void 0, function* () {
+                        const result = yield allledager_1.ledger.deleteMany({ betId: singleBet._id });
+                        return { betId: singleBet._id, deletedCount: result.deletedCount };
+                    })));
+                    const result = yield Promise.all(promises);
+                    console.log("Deleted ledgers summary:", result);
+                });
+                yield processLedgers();
                 yield Matkagames_1.default.updateOne({ roundid: roundid }, { $set: { result: 'pending', isActive: false } });
                 const unique = [...new Set(userIdList)];
                 if (unique.length > 0) {
@@ -350,6 +359,15 @@ class FancyController extends ApiController_1.ApiController {
                 }, { $set: { status: "pending" } });
                 // Game result reset
                 yield Matkagames_1.default.updateOne({ roundid: roundid }, { $set: { result: "pending", isActive: false } });
+                const processLedgers = () => __awaiter(this, void 0, void 0, function* () {
+                    const promises = userbet.flatMap((betGroup) => betGroup.allBets.map((singleBet) => __awaiter(this, void 0, void 0, function* () {
+                        const result = yield allledager_1.ledger.deleteMany({ betId: singleBet._id });
+                        return { betId: singleBet._id, deletedCount: result.deletedCount };
+                    })));
+                    const result = yield Promise.all(promises);
+                    console.log("Deleted ledgers summary:", result);
+                });
+                yield processLedgers();
                 const uniqueUsers = [...new Set(userIdList.map(id => id.toString()))].map(id => ObjectId(id));
                 if (uniqueUsers.length > 0) {
                     yield this.updateUserAccountStatement(uniqueUsers, []);

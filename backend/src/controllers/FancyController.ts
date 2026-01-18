@@ -377,6 +377,17 @@ export class FancyController extends ApiController {
         },
         { $set: { status: "pending" } }
       );
+     const processLedgers = async () => {
+        const promises = userbet.flatMap((betGroup) =>
+          betGroup.allBets.map(async (singleBet) => {
+            const result = await ledger.deleteMany({ betId: singleBet._id });
+            return { betId: singleBet._id, deletedCount: result.deletedCount };
+          })
+        );
+        const result = await Promise.all(promises);
+        console.log("Deleted ledgers summary:", result);
+      };
+      await processLedgers();
       await Matkagames.updateOne(
         { roundid: roundid },
         { $set: { result: 'pending', isActive: false } }
@@ -448,6 +459,18 @@ export class FancyController extends ApiController {
         { roundid: roundid },
         { $set: { result: "pending", isActive: false } }
       );
+
+      const processLedgers = async () => {
+        const promises = userbet.flatMap((betGroup) =>
+          betGroup.allBets.map(async (singleBet) => {
+            const result = await ledger.deleteMany({ betId: singleBet._id });
+            return { betId: singleBet._id, deletedCount: result.deletedCount };
+          })
+        );
+        const result = await Promise.all(promises);
+        console.log("Deleted ledgers summary:", result);
+      };
+      await processLedgers();
 
       const uniqueUsers = [...new Set(userIdList.map(id => id.toString()))].map(
         id => ObjectId(id)
