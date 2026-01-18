@@ -199,4 +199,4 @@ def lena_dena(userinfo):
         return jsonify(error("Bet Not Found")), 401
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,port=8000)
