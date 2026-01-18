@@ -124,7 +124,7 @@ class FancyController extends ApiController_1.ApiController {
                         $match: {
                             parentId: ObjectId(userData === null || userData === void 0 ? void 0 : userData.parentId),
                             roundid: data === null || data === void 0 ? void 0 : data.matchId,
-                            selectionId: data === null || data === void 0 ? void 0 : data.selectionId
+                            // selectionId: data?.selectionId
                         }
                     },
                     {

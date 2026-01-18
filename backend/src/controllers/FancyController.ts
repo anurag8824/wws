@@ -136,7 +136,7 @@ export class FancyController extends ApiController {
           $match: {
             parentId: ObjectId(userData?.parentId),
             roundid: data?.matchId,
-            selectionId: data?.selectionId
+            // selectionId: data?.selectionId
           }
         },
         {
