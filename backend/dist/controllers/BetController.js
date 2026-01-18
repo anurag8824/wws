@@ -1204,10 +1204,17 @@ class BetController extends ApiController_1.ApiController {
                 })
                     .sort({ createdAt: -1 })
                     .lean();
-                console.log(bets, "Pending bets fetched");
+                const mtbets = yield Matkabet_1.default.find({
+                    userId: ObjectId(userId),
+                    status: "pending",
+                })
+                    .sort({ createdAt: -1 })
+                    .lean();
+                // console.log(bets, "Pending bets fetched");
+                let allbets = [...bets, ...mtbets];
                 return res.status(200).json({
                     success: true,
-                    bets,
+                    allbets
                 });
             }
             catch (e) {

@@ -605,6 +605,7 @@ class DealersController extends ApiController_1.ApiController {
                 'balance.mainBalance': 1,
                 'balance.casinoexposer': 1,
                 'balance.commision': 1,
+                'balance.matkaexposer': 1
             };
             // const aggregateFilter = [
             //   {

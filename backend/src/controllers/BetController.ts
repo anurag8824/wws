@@ -1399,11 +1399,19 @@ export class BetController extends ApiController {
         .sort({ createdAt: -1 })
         .lean();
 
-      console.log(bets, "Pending bets fetched");
+      const mtbets = await Matkabet.find({
+        userId: ObjectId(userId),
+        status: "pending",
+      })
+        .sort({ createdAt: -1 })
+        .lean();
+
+      // console.log(bets, "Pending bets fetched");
+      let allbets =  [...bets,...mtbets]
 
       return res.status(200).json({
         success: true,
-        bets,
+      allbets
       });
     } catch (e: any) {
       console.error(e);

@@ -582,8 +582,10 @@ const ListClients = () => {
   const finalExposer = (userB: any) => {
     const ex = userB?.exposer?.toString() || "0";
     const cex = userB?.casinoexposer?.toString() || "0";
+     const cmex = userB?.matkaexposer?.toString() || "0";
+
     console.log(ex);
-    const finalE = parseFloat(ex) + +parseFloat(cex);
+    const finalE = parseFloat(ex) + +parseFloat(cex) + + parseFloat(cmex);
     return finalE.toFixed(2);
   };
 
@@ -1716,7 +1718,7 @@ const ListClients = () => {
 
                                       // yahan assume kar rahe hain ki res.data ya res.results me array aata hai
                                       if (res) {
-                                        setEngageRows(res?.data?.bets);
+                                        setEngageRows(res?.data?.allbets);
                                       } else {
                                         console.warn(
                                           "Unexpected response format:",

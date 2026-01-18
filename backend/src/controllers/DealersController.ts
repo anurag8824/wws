@@ -633,6 +633,7 @@ async deleteUser(req: Request, res: Response): Promise<Response> {
       'balance.mainBalance': 1,
       'balance.casinoexposer': 1,
       'balance.commision':1,
+      'balance.matkaexposer':1
     }
 
     // const aggregateFilter = [
