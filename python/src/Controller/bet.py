@@ -443,23 +443,23 @@ def placebet(betObj, userInfo):
             runners = getMarketRunner(payload, matchInfo)
             print(runners)
             print("runners this side")
-            rmid = random.randint(10000000, 99999999)
-            rqurey ={
-                "selectionName":selectionName,
-                "matchId":match_id
-            }
-            rresult = Bet.find_one(rqurey)
-            if(bet_On != "CASINO" and not rresult):
-                url = "https://api.cricketid.xyz/placed_bets?key=newdiamond36iuyIug9898&sid=4"
-                pobj = {
-                    "event_id": int(match_id),
-                    "market_id":int(rmid),
-                    "event_name": matchName,
-                    "market_name": selectionName,
-                    "market_type": bet_On,
-                }
-                response = requests.post(url,json =pobj)
-                print(response.text,"response is here")
+            # rmid = random.randint(10000000, 99999999)
+            # rqurey ={
+            #     "selectionName":selectionName,
+            #     "matchId":match_id
+            # }
+            # rresult = Bet.find_one(rqurey)
+            # if(bet_On != "CASINO" and not rresult):
+            #     url = "https://api.cricketid.xyz/placed_bets?key=newdiamond36iuyIug9898&sid=4"
+            #     pobj = {
+            #         "event_id": int(match_id),
+            #         "market_id":int(rmid),
+            #         "event_name": matchName,
+            #         "market_name": selectionName,
+            #         "market_type": bet_On,
+            #     }
+            #     response = requests.post(url,json =pobj)
+            #     print(response.text,"response is here")
             jsonObj = {
                 "sportId": event_id if bet_On != 'CASINO' else 5000,
                 "userId": ObjectId(userInfo['_id']),
@@ -495,7 +495,7 @@ def placebet(betObj, userInfo):
                 "updatedAt": current_datetime,
                 "parentNameStr": parentNameStr,
                 "oppsiteVol" : oppsiteVol,
-                "rmid":rmid if rresult is None else rresult['rmid']
+                # "rmid":rmid if rresult is None else rresult['rmid']
 
             }
             #print(jsonObj)
