@@ -202,6 +202,7 @@ class DealersController extends ApiController_1.ApiController {
             try {
                 const { _id, value } = req.body;
                 const userToUpdate = yield User_1.User.findById(_id);
+                console.log(userToUpdate, "serr");
                 if (!userToUpdate) {
                     // Agar 'this.fail' kaam na kare, toh direct 404 bhejein temporarily debug karne ke liye
                     return res.status(404).json({ message: "User not found" });
@@ -209,6 +210,20 @@ class DealersController extends ApiController_1.ApiController {
                 const limitValue = parseInt(value);
                 if (isNaN(limitValue)) {
                     return res.status(400).json({ message: "Invalid number format" });
+                }
+                const parent = yield User_1.User.findById(userToUpdate.parentId);
+                if (!parent) {
+                    return res.status(404).json({
+                        success: false,
+                        message: "Parent user not found",
+                    });
+                }
+                // 4️⃣ MAIN CHECK 🔥
+                if (limitValue > parent.matkalimit) {
+                    return res.status(400).json({
+                        success: false,
+                        message: `Matka limit cannot exceed parent limit (${parent.matkalimit})`,
+                    });
                 }
                 userToUpdate.matkalimit = limitValue;
                 yield userToUpdate.save();
@@ -588,6 +603,7 @@ class DealersController extends ApiController_1.ApiController {
                 pshare: 1,
                 mcom: 1,
                 matcom: 1,
+                matkalimit: 1,
                 scom: 1,
                 code: 1,
                 parentId: 1,
@@ -756,6 +772,7 @@ class DealersController extends ApiController_1.ApiController {
                 pshare: 1,
                 mcom: 1,
                 matcom: 1,
+                matkalimit: 1,
                 scom: 1,
                 code: 1,
                 parentId: 1,
@@ -1077,6 +1094,7 @@ class DealersController extends ApiController_1.ApiController {
                 pshare: 1,
                 mcom: 1,
                 matcom: 1,
+                matkalimit: 1,
                 scom: 1,
                 code: 1,
                 parentId: 1,
@@ -1149,6 +1167,7 @@ class DealersController extends ApiController_1.ApiController {
                 pshare: 1,
                 mcom: 1,
                 matcom: 1,
+                matkalimit: 1,
                 scom: 1,
                 code: 1,
                 creditRefrences: 1,
