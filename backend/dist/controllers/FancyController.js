@@ -433,7 +433,7 @@ class FancyController extends ApiController_1.ApiController {
                         bet_id: ObjectId(ItemBetList._id),
                         profit_loss: profitLossAmt,
                         matchId: 900,
-                        narration: `Matka Bet Result for ${ItemBetList.selectioId}/${result}/${ItemBetList.roundid}`,
+                        narration: `Matka Bet Result for ${ItemBetList.selectionId}/${result}/${ItemBetList.roundid}`,
                         sportsType: 900,
                         selectionId: ItemBetList.selectionId,
                         sportId: 900,
