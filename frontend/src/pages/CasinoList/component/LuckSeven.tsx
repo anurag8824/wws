@@ -99,7 +99,7 @@ const LuckSeven = (props: any) => {
 
     return (
       <div
-        className="lucky-seven-content m-b-10 col-6"
+        className="lucky-seven-content m-b-10 col-12"
         style={{ padding: "10px" }}
       >
         <div className="row m-t-10">
@@ -186,10 +186,12 @@ const LuckSeven = (props: any) => {
     <div>
       <div className="m-b-10 my-bet">
         <div className="new-casino">
-          <div className="row row6">
+          <div className="ro row6">
             {layout1()}
+            <div>
             {layoutTwoMarket(2, 3)}
             {layoutTwoMarket(4, 5)}
+            </div>
             {layout4()}
           </div>
         </div>

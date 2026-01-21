@@ -95,13 +95,14 @@ const TeenPatti20 = (props: any) => {
         <div className='col-lg-12 m-b-10 main-market  bg-gray' style={{ padding: '0px' }}>
           <div className='live-poker'>
             <table className='table coupon-table table table-bordered suspendwidth'>
-              <thead style={{borderBottom:"0px"}}>
+              <thead style={{borderBottom:"0px" , background:"rgb(143, 217, 168)"}}>
                 <tr>
-                  <th className={'box-4'} style={{ paddingLeft: "10px" }}>
+                  <th className={'box-4'} style={{ paddingLeft: "10px" ,textAlign:"center" }}>
+                    <span className='text-center pr-2'>TEAM</span>
                     <Limitinfo nameString={'lbmarket'} min={100} max={50000} />
                   </th>
-                  <th className={`back ${"box-2"}`}>BACK</th>
-                  <th className={`back ${"box-4"}`}></th>
+                  <th style={{background:"#8fd9a8"}}  className={`back ${"box-2"}`}>LAGAI</th>
+                  <th style={{background:"#8fd9a8"}} className={`back ${"box-4"}`}>KHAI</th>
                 </tr>
               </thead>
               <tbody>

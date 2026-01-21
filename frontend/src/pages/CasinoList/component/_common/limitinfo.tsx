@@ -2,7 +2,7 @@ import React from "react"
 
 const LimitInfo = (props:any) => {
     const { nameString, min, max, clsName} = props;
-    const clsNameFinal = clsName?'text-right':'tx-left';
+    const clsNameFinal = clsName ? 'text-center':'tx-left';
     return <div className={`info-block ${clsNameFinal}`}>
     <a
       href=''

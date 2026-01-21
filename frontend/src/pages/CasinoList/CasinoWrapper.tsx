@@ -600,6 +600,9 @@ const CasinoWrapper = (props: any) => {
               className={`card-body ${gameCode}`}
               style={{ padding: "0px", position: "relative" }}
             >
+                {casinoMatchData?.id && (
+                <LastResults lastResult={casinoMatchData} gameId={gameCode} />
+                )}
               {renderUiData(gameCode)}
 
               {(liveMatchData?.remark != "" &&
@@ -620,9 +623,7 @@ const CasinoWrapper = (props: any) => {
                 ""
               )}
             </div>
-            {casinoMatchData?.id && (
-              <LastResults lastResult={casinoMatchData} gameId={gameCode} />
-            )}
+          
           </div>
           <div className="col-4 col-lg-4">
             <div id="sidebar-right" className=" ">
@@ -667,7 +668,7 @@ const CasinoWrapper = (props: any) => {
           <Tabs>
             <Tab eventKey="home" title="Game">
               <div className="card m-b-10 my-bet">
-                <div className="card-header casino">
+                <div className="card-header casino" style={{background:"#525252"}}>
                   <h6 className="card-title d-inline-block">
                     {casinoMatchData?.title || ""}
                     {gameCode == "race2020" &&
@@ -739,6 +740,7 @@ const CasinoWrapper = (props: any) => {
                 className={`card-body ${gameCode}`}
                 style={{ padding: "0px", position: "relative" }}
               >
+                <LastResults lastResult={casinoMatchData} gameId={gameCode} />
                 {renderUiData(gameCode)}
                 {(liveMatchData?.remark != "" && gameCode != "Cards3J") ||
                 (liveMatchData?.event_data?.remark != "" &&
@@ -758,11 +760,11 @@ const CasinoWrapper = (props: any) => {
               {marketDataList.stake && (
                 <PlaceBetBox stake={marketDataList.stake} />
               )}
-              <LastResults lastResult={casinoMatchData} gameId={gameCode} />
+           
               {gameCode == "onedaypoker" && <OnedaypokerRules />}
               {gameCode == "opentp" && <Openteenpatti />}
               {gameCode == "fivewicket" && <Cricketv />}
-              {gameCode == "teen20" && <T20 />}
+              {/* {gameCode == "teen20" && <T20 />} */}
               {gameCode == "Superover" && <SoRules />}
             </Tab>
             <Tab eventKey="profile" title={`PLACED BET (${betCount})`}>

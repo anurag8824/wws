@@ -1,5 +1,6 @@
 import CasinoPnl from './casinoPnl';
 import LayBackButton from './_common/new/LayBackButton';
+import Limitinfo from './_common/limitinfo';
 
 const OneDayTeen = (props: any) => {
   const { lastOdds, liveMatchData } = props
@@ -33,12 +34,16 @@ const OneDayTeen = (props: any) => {
         <div className='col-lg-12 m-b-10 main-market  bg-gray' style={{ padding: '0px' }}>
           <div className='live-poker'>
             <table className='table coupon-table table table-bordered'>
-              <thead>
+              <thead style={{borderBottom:"0px" , background:"rgb(143, 217, 168)"}}>
                 <tr>
-                  <th className={"box-6"}>
-                  </th>
-                  <th className={`back ${"box-2"}`}>BACK</th>
-                  <th className={`lay-color ${"box-2"}`}>LAY</th>
+                   <th className={'box-6'} style={{ paddingLeft: "10px" ,textAlign:"center" }}>
+                                      <span className='text-center pr-2'>TEAM</span>
+                                      <Limitinfo nameString={'lbmarket'} min={100} max={50000} clsName={true} />
+                                    </th>
+                  {/* <th className={"box-6"}> */}
+                  {/* </th> */}
+                  <th className={`back ${"box-2"}`} style={{background:"#8fd9a8"}}>LAGAI</th>
+                  <th className={`lay-color ${"box-2"}`} style={{background:"#8fd9a8"}}>KHAI</th>
                 </tr>
               </thead>
               <tbody>
