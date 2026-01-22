@@ -11,7 +11,7 @@ import {
 } from "../../redux/actions/sports/sportSlice";
 import IMatch from "../../models/IMatch";
 import { useDispatch } from "react-redux";
-import { useNavigateCustom } from "../_layout/elements/custom-link";
+import { CustomLink, useNavigateCustom } from "../_layout/elements/custom-link";
 import { useWebsocket } from "../../context/webSocket";
 import GameTab from "../_layout/elements/game-tab";
 import { isMobile } from "react-device-detect";
@@ -301,6 +301,9 @@ const Dashboard = () => {
         {/* {!isMobile ? <Fav /> : ""} */}
         {/* {!isMobile ? <GameTab sportId={sportId} sportListState={sportListState} /> : ''} */}
         {/**/}
+        <div className="back-main-menu my-2">
+      <CustomLink to="/">BACK TO MAIN MENU</CustomLink>
+   </div>
         <div className="tab-content">
           <div className="tab-pane active">
             <div className="matchlist   coupon-card-first">
@@ -337,6 +340,9 @@ const Dashboard = () => {
             {/* <Newhome/> */}
           </div>
         </div>
+        <div className="back-main-menu my-2">
+      <CustomLink to="/">BACK TO MAIN MENU</CustomLink>
+   </div>
       </div>
     </>
   );

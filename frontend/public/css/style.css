@@ -166,7 +166,7 @@ p {
 
 .btn-theme {
   color: var(--primary-color) !important;
-  background-image: linear-gradient(to right, var(--theme1-bg), var(--theme2-bg)) !important;
+  background: black !important;
   width: 100% !important;
   border-radius: 4px !important;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12),
@@ -2788,7 +2788,7 @@ footer {
 .video-overlay {
   position: absolute;
   top: 0;
-  background: rgba(0, 0, 0, 0.4);
+  /* background: rgba(0, 0, 0, 0.4); */
   height: auto;
   left: 0;
   content: '';
@@ -3374,6 +3374,15 @@ marquee.casino-remark {
   width: 50%;
   float: left;
   cursor: pointer;
+}
+
+.aaabuttonBack{
+  background-color: #000000 !important; 
+  color: white !important;
+}
+.aaabuttonLay{
+  background-color: #dc3545 !important;
+  color: white !important;
 }
 
 .aaa-content {

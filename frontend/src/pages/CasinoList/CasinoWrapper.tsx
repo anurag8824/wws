@@ -632,7 +632,7 @@ const CasinoWrapper = (props: any) => {
                   {marketDataList.stake && (
                     <PlaceBetBox stake={marketDataList.stake} />
                   )}
-                  <div className="card m-b-10 my-bet">
+                  <div className="card m-b-10 my-bet d-none">
                     <div className="card-header d-flex justify-content-between align-items-center">
                       <h6 className="card-title d-inline-block">My Bet</h6>
                       {/* <a
@@ -767,7 +767,7 @@ const CasinoWrapper = (props: any) => {
               {gameCode == "fivewicket" && <Cricketv />}
               {/* {gameCode == "teen20" && <T20 />} */}
               {gameCode == "Superover" && <SoRules />}
-              <div className="card m-b-10 my-bet">
+              <div className="card m-b-10 my-bet d-none">
                 <div
                   className="card-header"
                   style={{ display: "flex", justifyContent: "space-between" }}

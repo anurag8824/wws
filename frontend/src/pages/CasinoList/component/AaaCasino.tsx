@@ -68,7 +68,7 @@ const AaaCasino = (props: any) => {
               <div className={"box- text-center "}><b ><span className="tx-red">{runner}.</span> {Item.RunnerName}</b>
                 <CasinoPnl sectionId={Item.SelectionId} matchId={liveMatchData.match_id} />
               </div>
-              <LayBackButton selectionid={Item.SelectionId} lastOdds={lastOdds} liveMatchData={liveMatchData} clsnamename={'box-2'} />
+              <LayBackButton selectionid={Item.SelectionId} lastOdds={lastOdds} liveMatchData={liveMatchData} clsnamename={'box-2 '} />
             </div>
           })}
         </div>

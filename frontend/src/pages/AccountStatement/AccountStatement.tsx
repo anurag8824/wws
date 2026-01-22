@@ -156,6 +156,12 @@ const AccountStatement = () => {
             >
               {stmt.narration}
             </td>
+            <td
+              className=""
+              // onClick={(e: MouseEvent<HTMLTableCellElement>) => getBets(e, stmt.stmt)}
+            >
+              {(stmt.closing - stmt.credit).toFixed() }
+            </td>
             <td className="green wnwrap">
               {stmt.credit >= 0 && stmt.credit.toFixed(2)}
             </td>
@@ -301,6 +307,15 @@ const AccountStatement = () => {
                         }}
                       >
                         DESCRIPTION
+                      </th>
+                      <th
+                        style={{
+                          width: "45%",
+                          textAlign: "center",
+                          background: "#888399",
+                        }}
+                      >
+                        Prev. BAL
                       </th>
 
                       <th
