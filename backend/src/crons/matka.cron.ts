@@ -123,21 +123,43 @@ export const startMatkaCron = () => {
       const todayStr = getISTDateString();
 
       const matkas = [
+        // ✅ FARIDABAD
         {
-          opentime: { hour: 9, minute: 0 },
-          closetime: { hour: 3, minute: 0 },
-          gamename: "Dishawar",
+          opentime: { hour: 9, minute: 0 },   // 09:00 AM
+          closetime: { hour: 17, minute: 15 }, // 05:15 PM
+          gamename: "Faridabad",
+          id: "1",
+          isNextDayClose: false,
+        },
+      
+        // ✅ GHAZIABAD
+        {
+          opentime: { hour: 9, minute: 0 },   // 09:00 AM
+          closetime: { hour: 20, minute: 15 }, // 08:15 PM
+          gamename: "Ghaziabad",
+          id: "2",
+          isNextDayClose: false,
+        },
+      
+        // ✅ GALI
+        {
+          opentime: { hour: 9, minute: 0 },   // 09:00 AM
+          closetime: { hour: 22, minute: 30 }, // 10:30 PM
+          gamename: "Gali",
+          id: "3",
+          isNextDayClose: false,
+        },
+      
+        // ✅ DISAWAR (next day close)
+        {
+          opentime: { hour: 9, minute: 0 },   // 09:00 AM
+          closetime: { hour: 3, minute: 0 },  // 03:00 AM (next day)
+          gamename: "Disawar",
           id: "4",
           isNextDayClose: true,
         },
-        {
-          opentime: { hour: 11, minute: 2 },
-          closetime: { hour: 3, minute: 0 },
-          gamename: "Fridabad",
-          id: "1",
-          isNextDayClose: true,
-        },
       ];
+      
 
       for (const m of matkas) {
         const openMin =

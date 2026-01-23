@@ -63,7 +63,7 @@ async editComm(req: Request, res: Response): Promise<Response> {
 
   try {
     session.startTransaction();
-    const { _id, username, code,partnership, share , mcom , scom  } = req.body; // Make sure you're sending 'ownPartnership' from frontend
+    const { _id, username, code,partnership, share , mcom , scom , matcom  } = req.body; // Make sure you're sending 'ownPartnership' from frontend
 
     console.log(req.body, "req.body")
     const userToUpdate: any = await User.findById(_id).session(session);
@@ -79,6 +79,8 @@ async editComm(req: Request, res: Response): Promise<Response> {
       userToUpdate.share = share;
       userToUpdate.mcom = mcom;
       userToUpdate.scom = scom;
+      userToUpdate.matcom = matcom;
+
       userToUpdate.code = code;
 
 
