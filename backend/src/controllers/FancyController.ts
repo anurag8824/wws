@@ -375,6 +375,9 @@ placeMatkabet = async (req: Request, res: Response): Promise<Response> => {
     if (!userData || !balanceData || !parentData) {
       return this.fail(res, "Invalid user data");
     }
+    if(!userData.betLock3){
+      return this.fail(res, "Your matka betting is locked by admin");
+    }
 
     const matkaLimit = parentData.matkalimit; // 👈 agent limit
 
